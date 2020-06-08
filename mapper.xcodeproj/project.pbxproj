@@ -7,23 +7,45 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E40CDA99248DE2D400D9B710 /* ScanRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40CDA98248DE2D400D9B710 /* ScanRecorderView.swift */; };
+		E46252E02489B7B70078DDD7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46252DF2489B7B70078DDD7 /* SettingsView.swift */; };
 		E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C3248980CD008B5C9A /* AppDelegate.swift */; };
 		E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C5248980CD008B5C9A /* SceneDelegate.swift */; };
-		E46D26C8248980CD008B5C9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C7248980CD008B5C9A /* ContentView.swift */; };
 		E46D26CA248980CF008B5C9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46D26C9248980CF008B5C9A /* Assets.xcassets */; };
 		E46D26CD248980CF008B5C9A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46D26CC248980CF008B5C9A /* Preview Assets.xcassets */; };
 		E46D26D0248980CF008B5C9A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E46D26CE248980CF008B5C9A /* LaunchScreen.storyboard */; };
+		E46D26D9248980FD008B5C9A /* ScanListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26D8248980FD008B5C9A /* ScanListView.swift */; };
+		E46D26DB24898135008B5C9A /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26DA24898135008B5C9A /* ContentView.swift */; };
+		E46D26DD2489818D008B5C9A /* ScanListCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26DC2489818D008B5C9A /* ScanListCellView.swift */; };
+		E46D26E6248984E6008B5C9A /* MapperModels.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E46D26E4248984E6008B5C9A /* MapperModels.xcdatamodeld */; };
+		E46D26E824898C09008B5C9A /* CreateScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26E724898C09008B5C9A /* CreateScanView.swift */; };
+		E46D26EA2489986C008B5C9A /* ScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26E92489986C008B5C9A /* ScanView.swift */; };
+		E4D981B6248D8CC600F23C3A /* ScanVisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D981B5248D8CC600F23C3A /* ScanVisualizationView.swift */; };
+		E4D981B8248D8D0800F23C3A /* StartScanView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D981B7248D8D0800F23C3A /* StartScanView.swift */; };
+		E4D981BA248D931100F23C3A /* ScanRecorderHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D981B9248D931100F23C3A /* ScanRecorderHostView.swift */; };
+		E4D981BD248D93AA00F23C3A /* ScanRecorderViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4D981BC248D93AA00F23C3A /* ScanRecorderViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E40CDA98248DE2D400D9B710 /* ScanRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderView.swift; sourceTree = "<group>"; };
+		E46252DF2489B7B70078DDD7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E46D26C0248980CD008B5C9A /* mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46D26C3248980CD008B5C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E46D26C5248980CD008B5C9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		E46D26C7248980CD008B5C9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E46D26C9248980CF008B5C9A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E46D26CC248980CF008B5C9A /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		E46D26CF248980CF008B5C9A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E46D26D1248980CF008B5C9A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E46D26D8248980FD008B5C9A /* ScanListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanListView.swift; sourceTree = "<group>"; };
+		E46D26DA24898135008B5C9A /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E46D26DC2489818D008B5C9A /* ScanListCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanListCellView.swift; sourceTree = "<group>"; };
+		E46D26E5248984E6008B5C9A /* MapperModels.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = MapperModels.xcdatamodel; sourceTree = "<group>"; };
+		E46D26E724898C09008B5C9A /* CreateScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateScanView.swift; sourceTree = "<group>"; };
+		E46D26E92489986C008B5C9A /* ScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanView.swift; sourceTree = "<group>"; };
+		E4D981B5248D8CC600F23C3A /* ScanVisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanVisualizationView.swift; sourceTree = "<group>"; };
+		E4D981B7248D8D0800F23C3A /* StartScanView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScanView.swift; sourceTree = "<group>"; };
+		E4D981B9248D931100F23C3A /* ScanRecorderHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderHostView.swift; sourceTree = "<group>"; };
+		E4D981BC248D93AA00F23C3A /* ScanRecorderViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -40,6 +62,7 @@
 		E46D26B7248980CC008B5C9A = {
 			isa = PBXGroup;
 			children = (
+				E46D26E4248984E6008B5C9A /* MapperModels.xcdatamodeld */,
 				E46D26C2248980CD008B5C9A /* mapper */,
 				E46D26C1248980CD008B5C9A /* Products */,
 			);
@@ -56,9 +79,10 @@
 		E46D26C2248980CD008B5C9A /* mapper */ = {
 			isa = PBXGroup;
 			children = (
+				E46D26DE248981ED008B5C9A /* models */,
+				E46D26D7248980EE008B5C9A /* views */,
 				E46D26C3248980CD008B5C9A /* AppDelegate.swift */,
 				E46D26C5248980CD008B5C9A /* SceneDelegate.swift */,
-				E46D26C7248980CD008B5C9A /* ContentView.swift */,
 				E46D26C9248980CF008B5C9A /* Assets.xcassets */,
 				E46D26CE248980CF008B5C9A /* LaunchScreen.storyboard */,
 				E46D26D1248980CF008B5C9A /* Info.plist */,
@@ -73,6 +97,39 @@
 				E46D26CC248980CF008B5C9A /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E46D26D7248980EE008B5C9A /* views */ = {
+			isa = PBXGroup;
+			children = (
+				E4D981BB248D939200F23C3A /* ScanRecorder */,
+				E46D26DA24898135008B5C9A /* ContentView.swift */,
+				E46D26D8248980FD008B5C9A /* ScanListView.swift */,
+				E46D26DC2489818D008B5C9A /* ScanListCellView.swift */,
+				E46D26E724898C09008B5C9A /* CreateScanView.swift */,
+				E46D26E92489986C008B5C9A /* ScanView.swift */,
+				E46252DF2489B7B70078DDD7 /* SettingsView.swift */,
+				E4D981B5248D8CC600F23C3A /* ScanVisualizationView.swift */,
+				E4D981B7248D8D0800F23C3A /* StartScanView.swift */,
+			);
+			path = views;
+			sourceTree = "<group>";
+		};
+		E46D26DE248981ED008B5C9A /* models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = models;
+			sourceTree = "<group>";
+		};
+		E4D981BB248D939200F23C3A /* ScanRecorder */ = {
+			isa = PBXGroup;
+			children = (
+				E4D981B9248D931100F23C3A /* ScanRecorderHostView.swift */,
+				E4D981BC248D93AA00F23C3A /* ScanRecorderViewController.swift */,
+				E40CDA98248DE2D400D9B710 /* ScanRecorderView.swift */,
+			);
+			path = ScanRecorder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -147,8 +204,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */,
+				E4D981BD248D93AA00F23C3A /* ScanRecorderViewController.swift in Sources */,
+				E46D26EA2489986C008B5C9A /* ScanView.swift in Sources */,
+				E4D981B8248D8D0800F23C3A /* StartScanView.swift in Sources */,
+				E4D981BA248D931100F23C3A /* ScanRecorderHostView.swift in Sources */,
+				E46D26DD2489818D008B5C9A /* ScanListCellView.swift in Sources */,
+				E46252E02489B7B70078DDD7 /* SettingsView.swift in Sources */,
 				E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */,
-				E46D26C8248980CD008B5C9A /* ContentView.swift in Sources */,
+				E46D26DB24898135008B5C9A /* ContentView.swift in Sources */,
+				E4D981B6248D8CC600F23C3A /* ScanVisualizationView.swift in Sources */,
+				E46D26E6248984E6008B5C9A /* MapperModels.xcdatamodeld in Sources */,
+				E40CDA99248DE2D400D9B710 /* ScanRecorderView.swift in Sources */,
+				E46D26D9248980FD008B5C9A /* ScanListView.swift in Sources */,
+				E46D26E824898C09008B5C9A /* CreateScanView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,6 +410,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		E46D26E4248984E6008B5C9A /* MapperModels.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				E46D26E5248984E6008B5C9A /* MapperModels.xcdatamodel */,
+			);
+			currentVersion = E46D26E5248984E6008B5C9A /* MapperModels.xcdatamodel */;
+			path = MapperModels.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E46D26B8248980CC008B5C9A /* Project object */;
 }
