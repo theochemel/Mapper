@@ -8,6 +8,20 @@
 
 /* Begin PBXBuildFile section */
 		E40CDA99248DE2D400D9B710 /* ScanRecorderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40CDA98248DE2D400D9B710 /* ScanRecorderView.swift */; };
+		E40CDA9B248EA19100D9B710 /* CoachingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40CDA9A248EA19100D9B710 /* CoachingView.swift */; };
+		E40CDA9D248EA19B00D9B710 /* CoachingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40CDA9C248EA19B00D9B710 /* CoachingViewController.swift */; };
+		E40CDA9F248EAD3600D9B710 /* ObjectSelectorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40CDA9E248EAD3600D9B710 /* ObjectSelectorView.swift */; };
+		E40CDAA1248EAD4200D9B710 /* ObjectSelectorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40CDAA0248EAD4200D9B710 /* ObjectSelectorViewController.swift */; };
+		E40CDAA5248ED7C300D9B710 /* Object.swift in Sources */ = {isa = PBXBuildFile; fileRef = E40CDAA4248ED7C300D9B710 /* Object.swift */; };
+		E417194E248FF73000FEC62C /* MinimapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417194D248FF73000FEC62C /* MinimapViewController.swift */; };
+		E4171950248FF73A00FEC62C /* MinimapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417194F248FF73A00FEC62C /* MinimapView.swift */; };
+		E4171952248FFDEC00FEC62C /* ScanRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4171951248FFDEC00FEC62C /* ScanRecorder.swift */; };
+		E4171954248FFE9400FEC62C /* ARViewProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4171953248FFE9400FEC62C /* ARViewProvider.swift */; };
+		E41719562490085300FEC62C /* ScanState.swift in Sources */ = {isa = PBXBuildFile; fileRef = E41719552490085300FEC62C /* ScanState.swift */; };
+		E417195824900A0D00FEC62C /* ScanRecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417195724900A0D00FEC62C /* ScanRecorderDelegate.swift */; };
+		E417195A24900CE400FEC62C /* MinimapCameraIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417195924900CE400FEC62C /* MinimapCameraIndicatorView.swift */; };
+		E417195C24903ECD00FEC62C /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417195B24903ECD00FEC62C /* Plane.swift */; };
+		E4171962249062AE00FEC62C /* WallEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4171961249062AE00FEC62C /* WallEntity.swift */; };
 		E46252E02489B7B70078DDD7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46252DF2489B7B70078DDD7 /* SettingsView.swift */; };
 		E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C3248980CD008B5C9A /* AppDelegate.swift */; };
 		E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C5248980CD008B5C9A /* SceneDelegate.swift */; };
@@ -28,6 +42,20 @@
 
 /* Begin PBXFileReference section */
 		E40CDA98248DE2D400D9B710 /* ScanRecorderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderView.swift; sourceTree = "<group>"; };
+		E40CDA9A248EA19100D9B710 /* CoachingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingView.swift; sourceTree = "<group>"; };
+		E40CDA9C248EA19B00D9B710 /* CoachingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoachingViewController.swift; sourceTree = "<group>"; };
+		E40CDA9E248EAD3600D9B710 /* ObjectSelectorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectorView.swift; sourceTree = "<group>"; };
+		E40CDAA0248EAD4200D9B710 /* ObjectSelectorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectorViewController.swift; sourceTree = "<group>"; };
+		E40CDAA4248ED7C300D9B710 /* Object.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Object.swift; sourceTree = "<group>"; };
+		E417194D248FF73000FEC62C /* MinimapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapViewController.swift; sourceTree = "<group>"; };
+		E417194F248FF73A00FEC62C /* MinimapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapView.swift; sourceTree = "<group>"; };
+		E4171951248FFDEC00FEC62C /* ScanRecorder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorder.swift; sourceTree = "<group>"; };
+		E4171953248FFE9400FEC62C /* ARViewProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewProvider.swift; sourceTree = "<group>"; };
+		E41719552490085300FEC62C /* ScanState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanState.swift; sourceTree = "<group>"; };
+		E417195724900A0D00FEC62C /* ScanRecorderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderDelegate.swift; sourceTree = "<group>"; };
+		E417195924900CE400FEC62C /* MinimapCameraIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapCameraIndicatorView.swift; sourceTree = "<group>"; };
+		E417195B24903ECD00FEC62C /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
+		E4171961249062AE00FEC62C /* WallEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallEntity.swift; sourceTree = "<group>"; };
 		E46252DF2489B7B70078DDD7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		E46D26C0248980CD008B5C9A /* mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46D26C3248980CD008B5C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -59,6 +87,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E41719602490629800FEC62C /* RealityKit */ = {
+			isa = PBXGroup;
+			children = (
+				E4171961249062AE00FEC62C /* WallEntity.swift */,
+			);
+			path = RealityKit;
+			sourceTree = "<group>";
+		};
 		E46D26B7248980CC008B5C9A = {
 			isa = PBXGroup;
 			children = (
@@ -79,6 +115,7 @@
 		E46D26C2248980CD008B5C9A /* mapper */ = {
 			isa = PBXGroup;
 			children = (
+				E41719602490629800FEC62C /* RealityKit */,
 				E46D26DE248981ED008B5C9A /* models */,
 				E46D26D7248980EE008B5C9A /* views */,
 				E46D26C3248980CD008B5C9A /* AppDelegate.swift */,
@@ -118,6 +155,12 @@
 		E46D26DE248981ED008B5C9A /* models */ = {
 			isa = PBXGroup;
 			children = (
+				E40CDAA4248ED7C300D9B710 /* Object.swift */,
+				E4171951248FFDEC00FEC62C /* ScanRecorder.swift */,
+				E4171953248FFE9400FEC62C /* ARViewProvider.swift */,
+				E41719552490085300FEC62C /* ScanState.swift */,
+				E417195724900A0D00FEC62C /* ScanRecorderDelegate.swift */,
+				E417195B24903ECD00FEC62C /* Plane.swift */,
 			);
 			path = models;
 			sourceTree = "<group>";
@@ -128,6 +171,13 @@
 				E4D981B9248D931100F23C3A /* ScanRecorderHostView.swift */,
 				E4D981BC248D93AA00F23C3A /* ScanRecorderViewController.swift */,
 				E40CDA98248DE2D400D9B710 /* ScanRecorderView.swift */,
+				E40CDA9A248EA19100D9B710 /* CoachingView.swift */,
+				E40CDA9C248EA19B00D9B710 /* CoachingViewController.swift */,
+				E40CDA9E248EAD3600D9B710 /* ObjectSelectorView.swift */,
+				E40CDAA0248EAD4200D9B710 /* ObjectSelectorViewController.swift */,
+				E417194D248FF73000FEC62C /* MinimapViewController.swift */,
+				E417194F248FF73A00FEC62C /* MinimapView.swift */,
+				E417195924900CE400FEC62C /* MinimapCameraIndicatorView.swift */,
 			);
 			path = ScanRecorder;
 			sourceTree = "<group>";
@@ -203,17 +253,31 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E40CDAA1248EAD4200D9B710 /* ObjectSelectorViewController.swift in Sources */,
+				E417195C24903ECD00FEC62C /* Plane.swift in Sources */,
 				E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */,
+				E41719562490085300FEC62C /* ScanState.swift in Sources */,
 				E4D981BD248D93AA00F23C3A /* ScanRecorderViewController.swift in Sources */,
+				E417194E248FF73000FEC62C /* MinimapViewController.swift in Sources */,
+				E40CDAA5248ED7C300D9B710 /* Object.swift in Sources */,
+				E40CDA9D248EA19B00D9B710 /* CoachingViewController.swift in Sources */,
+				E4171952248FFDEC00FEC62C /* ScanRecorder.swift in Sources */,
 				E46D26EA2489986C008B5C9A /* ScanView.swift in Sources */,
+				E4171950248FF73A00FEC62C /* MinimapView.swift in Sources */,
+				E40CDA9B248EA19100D9B710 /* CoachingView.swift in Sources */,
+				E40CDA9F248EAD3600D9B710 /* ObjectSelectorView.swift in Sources */,
 				E4D981B8248D8D0800F23C3A /* StartScanView.swift in Sources */,
 				E4D981BA248D931100F23C3A /* ScanRecorderHostView.swift in Sources */,
 				E46D26DD2489818D008B5C9A /* ScanListCellView.swift in Sources */,
+				E4171954248FFE9400FEC62C /* ARViewProvider.swift in Sources */,
+				E417195A24900CE400FEC62C /* MinimapCameraIndicatorView.swift in Sources */,
 				E46252E02489B7B70078DDD7 /* SettingsView.swift in Sources */,
 				E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */,
 				E46D26DB24898135008B5C9A /* ContentView.swift in Sources */,
+				E417195824900A0D00FEC62C /* ScanRecorderDelegate.swift in Sources */,
 				E4D981B6248D8CC600F23C3A /* ScanVisualizationView.swift in Sources */,
 				E46D26E6248984E6008B5C9A /* MapperModels.xcdatamodeld in Sources */,
+				E4171962249062AE00FEC62C /* WallEntity.swift in Sources */,
 				E40CDA99248DE2D400D9B710 /* ScanRecorderView.swift in Sources */,
 				E46D26D9248980FD008B5C9A /* ScanListView.swift in Sources */,
 				E46D26E824898C09008B5C9A /* CreateScanView.swift in Sources */,
