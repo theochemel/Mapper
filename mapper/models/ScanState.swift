@@ -13,6 +13,12 @@ class ScanState {
         self.planes = [:]
     }
     
+    public func reset() {
+        self.cameraPosition = vector_float3(0.0, 0.0, 0.0)
+        self.cameraOrientation = vector_float3(0.0, 0.0, 0.0)
+        self.planes = [:]
+    }
+    
     public func update(from frame: ARFrame) {
         let column = frame.camera.transform.columns.3
         
@@ -26,8 +32,12 @@ class ScanState {
     }
     
     func updatePlane(from anchor: ARPlaneAnchor) -> Plane {
-        self.planes[anchor.identifier]?.update(from: anchor)
-        return self.planes[anchor.identifier]!
+        if let plane = self.planes[anchor.identifier] {
+            self.planes[anchor.identifier]?.update(from: anchor)
+            return self.planes[anchor.identifier]!
+        } else {
+            return self.addPlane(from: anchor)
+        }
     }
     
     func removePlane(from anchor: ARPlaneAnchor) {

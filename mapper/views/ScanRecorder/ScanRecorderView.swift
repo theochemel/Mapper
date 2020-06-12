@@ -5,7 +5,7 @@ import ARKit
 
 class ScanRecorderView: UIView, ARViewProvider {
     
-    public var arView: ARView!
+    public var arView: ARSCNView!
     public var recordButton: UIButton!
     public var coachingView: CoachingView!
     public var objectSelectorView: ObjectSelectorView!
@@ -14,7 +14,7 @@ class ScanRecorderView: UIView, ARViewProvider {
     public init() {
         super.init(frame: .zero)
         
-        self.arView = ARView()
+        self.arView = ARSCNView()
         self.addSubview(arView)
         self.layoutARView()
         

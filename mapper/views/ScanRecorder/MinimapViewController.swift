@@ -13,8 +13,10 @@ class MinimapViewController: UIViewController {
     }
     
     public func update(from state: ScanState) {
+        self.minimapView.wallsView.drawWalls(from: Array(state.planes.values), cameraPosition: state.cameraPosition)
+        
         UIView.animate(withDuration: 0.05) {
-            self.minimapView.cameraIndicatorView.transform = CGAffineTransform(rotationAngle: CGFloat(-state.cameraOrientation.y))
+            self.minimapView.wallsView.transform = CGAffineTransform(rotationAngle: CGFloat(state.cameraOrientation.y))
         }
     }
 }

@@ -5,6 +5,7 @@ class MinimapView: UIView {
     
     public var blurView: UIVisualEffectView!
     public var cameraIndicatorView: MinimapCameraIndicatorView!
+    public var wallsView: MinimapWallsView!
     
     public init() {
         super.init(frame: .zero)
@@ -20,6 +21,9 @@ class MinimapView: UIView {
         
         self.cameraIndicatorView = MinimapCameraIndicatorView()
         self.addSubview(cameraIndicatorView)
+        
+        self.wallsView = MinimapWallsView(scale: 20.0)
+        self.addSubview(wallsView)
     }
     
     required init?(coder: NSCoder) {
@@ -37,8 +41,7 @@ class MinimapView: UIView {
     }
     
     override func layoutSubviews() {
-        let origin = CGPoint(x: self.bounds.midX - 24.0, y: self.bounds.midY - 24.0)
-        let size = CGSize(width: 48.0, height: 48.0)
-        self.cameraIndicatorView.frame = CGRect(origin: origin, size: size)
+        self.cameraIndicatorView.frame = CGRect(origin: CGPoint(x: self.bounds.midX - 24.0, y: self.bounds.midY - 24.0), size: CGSize(width: 48.0, height: 48.0))
+        self.wallsView.frame = self.bounds
     }
 }

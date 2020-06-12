@@ -42,6 +42,8 @@ class ScanRecorderViewController: UIViewController {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
+        
+        self.scanRecorder.startSession()
     }
     
     override func viewDidAppear(_ animated: Bool) {

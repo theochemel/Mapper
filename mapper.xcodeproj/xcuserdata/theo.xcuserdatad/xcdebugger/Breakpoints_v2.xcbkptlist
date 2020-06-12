@@ -14,8 +14,8 @@
             filePath = "mapper/views/ScanRecorder/ScanRecorderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "64"
-            endingLineNumber = "64"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "recordButtonDidTouchUpInside(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,48 +23,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "1BC8C1FC-D819-4E46-B049-11771721F713"
+            uuid = "1CE1015D-6E43-413E-8699-34D53656EC7C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mapper/models/ScanRecorder.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
-            landmarkName = "session(_:didAdd:)"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "renderer(_:didAdd:for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "13629D5D-C8CE-4F4D-A064-539EF1412D79"
+            uuid = "67957183-24C6-4114-9277-95F4136D7419"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "mapper/models/ScanRecorder.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "session(_:didAdd:)"
+            startingLineNumber = "94"
+            endingLineNumber = "94"
+            landmarkName = "renderer(_:didUpdate:for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "7EF090C8-732A-41D7-A328-546BB2B957BA"
-            shouldBeEnabled = "Yes"
+            uuid = "E191A288-A870-488A-9E28-951C57E6E4F0"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "mapper/models/ScanRecorder.swift"
+            filePath = "mapper/views/ScanRecorder/MinimapWallsView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "session(_:didUpdate:)"
+            startingLineNumber = "62"
+            endingLineNumber = "62"
+            landmarkName = "drawWalls(from:cameraPosition:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

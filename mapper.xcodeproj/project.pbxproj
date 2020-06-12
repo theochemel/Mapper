@@ -21,8 +21,10 @@
 		E417195824900A0D00FEC62C /* ScanRecorderDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417195724900A0D00FEC62C /* ScanRecorderDelegate.swift */; };
 		E417195A24900CE400FEC62C /* MinimapCameraIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417195924900CE400FEC62C /* MinimapCameraIndicatorView.swift */; };
 		E417195C24903ECD00FEC62C /* Plane.swift in Sources */ = {isa = PBXBuildFile; fileRef = E417195B24903ECD00FEC62C /* Plane.swift */; };
-		E4171962249062AE00FEC62C /* WallEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4171961249062AE00FEC62C /* WallEntity.swift */; };
 		E46252E02489B7B70078DDD7 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46252DF2489B7B70078DDD7 /* SettingsView.swift */; };
+		E467D40C24918338005887AD /* MinimapWallsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E467D40B24918338005887AD /* MinimapWallsView.swift */; };
+		E46B61E3249151B900C4E7A8 /* SCNAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */; };
+		E46B61E52491576C00C4E7A8 /* WallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B61E42491576C00C4E7A8 /* WallNode.swift */; };
 		E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C3248980CD008B5C9A /* AppDelegate.swift */; };
 		E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C5248980CD008B5C9A /* SceneDelegate.swift */; };
 		E46D26CA248980CF008B5C9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46D26C9248980CF008B5C9A /* Assets.xcassets */; };
@@ -55,8 +57,10 @@
 		E417195724900A0D00FEC62C /* ScanRecorderDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderDelegate.swift; sourceTree = "<group>"; };
 		E417195924900CE400FEC62C /* MinimapCameraIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapCameraIndicatorView.swift; sourceTree = "<group>"; };
 		E417195B24903ECD00FEC62C /* Plane.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Plane.swift; sourceTree = "<group>"; };
-		E4171961249062AE00FEC62C /* WallEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallEntity.swift; sourceTree = "<group>"; };
 		E46252DF2489B7B70078DDD7 /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		E467D40B24918338005887AD /* MinimapWallsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapWallsView.swift; sourceTree = "<group>"; };
+		E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SCNAssets.scnassets; sourceTree = "<group>"; };
+		E46B61E42491576C00C4E7A8 /* WallNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallNode.swift; sourceTree = "<group>"; };
 		E46D26C0248980CD008B5C9A /* mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46D26C3248980CD008B5C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E46D26C5248980CD008B5C9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -87,12 +91,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		E41719602490629800FEC62C /* RealityKit */ = {
+		E46B61E12491518400C4E7A8 /* SceneKit */ = {
 			isa = PBXGroup;
 			children = (
-				E4171961249062AE00FEC62C /* WallEntity.swift */,
+				E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */,
+				E46B61E42491576C00C4E7A8 /* WallNode.swift */,
 			);
-			path = RealityKit;
+			path = SceneKit;
 			sourceTree = "<group>";
 		};
 		E46D26B7248980CC008B5C9A = {
@@ -115,7 +120,7 @@
 		E46D26C2248980CD008B5C9A /* mapper */ = {
 			isa = PBXGroup;
 			children = (
-				E41719602490629800FEC62C /* RealityKit */,
+				E46B61E12491518400C4E7A8 /* SceneKit */,
 				E46D26DE248981ED008B5C9A /* models */,
 				E46D26D7248980EE008B5C9A /* views */,
 				E46D26C3248980CD008B5C9A /* AppDelegate.swift */,
@@ -178,6 +183,7 @@
 				E417194D248FF73000FEC62C /* MinimapViewController.swift */,
 				E417194F248FF73A00FEC62C /* MinimapView.swift */,
 				E417195924900CE400FEC62C /* MinimapCameraIndicatorView.swift */,
+				E467D40B24918338005887AD /* MinimapWallsView.swift */,
 			);
 			path = ScanRecorder;
 			sourceTree = "<group>";
@@ -240,6 +246,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E46B61E3249151B900C4E7A8 /* SCNAssets.scnassets in Resources */,
 				E46D26D0248980CF008B5C9A /* LaunchScreen.storyboard in Resources */,
 				E46D26CD248980CF008B5C9A /* Preview Assets.xcassets in Resources */,
 				E46D26CA248980CF008B5C9A /* Assets.xcassets in Resources */,
@@ -266,6 +273,7 @@
 				E4171950248FF73A00FEC62C /* MinimapView.swift in Sources */,
 				E40CDA9B248EA19100D9B710 /* CoachingView.swift in Sources */,
 				E40CDA9F248EAD3600D9B710 /* ObjectSelectorView.swift in Sources */,
+				E467D40C24918338005887AD /* MinimapWallsView.swift in Sources */,
 				E4D981B8248D8D0800F23C3A /* StartScanView.swift in Sources */,
 				E4D981BA248D931100F23C3A /* ScanRecorderHostView.swift in Sources */,
 				E46D26DD2489818D008B5C9A /* ScanListCellView.swift in Sources */,
@@ -277,10 +285,10 @@
 				E417195824900A0D00FEC62C /* ScanRecorderDelegate.swift in Sources */,
 				E4D981B6248D8CC600F23C3A /* ScanVisualizationView.swift in Sources */,
 				E46D26E6248984E6008B5C9A /* MapperModels.xcdatamodeld in Sources */,
-				E4171962249062AE00FEC62C /* WallEntity.swift in Sources */,
 				E40CDA99248DE2D400D9B710 /* ScanRecorderView.swift in Sources */,
 				E46D26D9248980FD008B5C9A /* ScanListView.swift in Sources */,
 				E46D26E824898C09008B5C9A /* CreateScanView.swift in Sources */,
+				E46B61E52491576C00C4E7A8 /* WallNode.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

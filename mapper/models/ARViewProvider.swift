@@ -1,6 +1,6 @@
 import Foundation
-import RealityKit
+import ARKit
 
 protocol ARViewProvider: class {
-    var arView: ARView! { get }
+    var arView: ARSCNView! { get }
 }

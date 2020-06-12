@@ -7,7 +7,7 @@ class Plane {
     var alignment: Alignment
     var position: simd_float3
     var rotation: simd_quatf
-    var extent: simd_float2
+    var extent: simd_float3
     var vertices: [simd_float3]
     var triangleIndices: [simd_int3]
     var boundaryVertices: [simd_float3]
@@ -20,7 +20,7 @@ class Plane {
         
         self.position = anchor.center
         self.rotation = simd_quatf(anchor.transform)
-        self.extent = simd_float2(x: anchor.extent.x, y: anchor.extent.z)
+        self.extent = anchor.extent
         self.vertices = anchor.geometry.vertices
         
         self.triangleIndices = []
@@ -41,7 +41,7 @@ class Plane {
 
         self.position = anchor.center
         self.rotation = simd_quatf(anchor.transform)
-        self.extent = simd_float2(x: anchor.extent.x, y: anchor.extent.z)
+        self.extent = anchor.extent
         self.vertices = anchor.geometry.vertices
         
         self.triangleIndices = []
