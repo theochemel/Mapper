@@ -19,6 +19,7 @@ class ScanRecorderViewController: UIViewController {
         self.scanRecorderView = ScanRecorderView()
         self.view = self.scanRecorderView
         self.scanRecorderView.recordButton.addTarget(self, action: #selector(self.recordButtonDidTouchUpInside(_:)), for: .touchUpInside)
+        self.scanRecorderView.arView.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(handleARViewTap(sender:))))
         
         self.scanRecorder.arViewProvider = self.scanRecorderView
         
@@ -29,6 +30,7 @@ class ScanRecorderViewController: UIViewController {
         
         self.objectSelectorViewController = ObjectSelectorViewController()
         self.addChild(self.objectSelectorViewController)
+        self.objectSelectorViewController.delegate = self
         self.scanRecorderView.setObjectSelectorView(self.objectSelectorViewController.view as! ObjectSelectorView)
         
         self.minimapViewController = MinimapViewController()
@@ -71,10 +73,36 @@ class ScanRecorderViewController: UIViewController {
             self.scanRecorder.startRecording()
         }
     }
+    
+    @objc private func handleARViewTap(sender: UITapGestureRecognizer) {
+        if sender.state == .ended {
+            self.scanRecorder.objectPlacementManager?.addPoint()
+        }
+    }
 }
 
 extension ScanRecorderViewController: ScanRecorderDelegate {
     func didUpdateScanState(_ state: ScanState) {
         self.minimapViewController.update(from: state)
+    }
+    
+    func didFinishScan(_ rawScan: RawScan) {
+        self.scanRecorderView.arView.session.pause()
+        self.navigationController?.popViewController(animated: true)
+    }
+}
+
+protocol ObjectSelectorDelegate: class {
+    func didSelectObject(withCategory category: Object.Category)
+    func didCancel()
+}
+
+extension ScanRecorderViewController: ObjectSelectorDelegate {
+    func didSelectObject(withCategory category: Object.Category) {
+        self.scanRecorder.startPlacement(for: category)
+    }
+    
+    func didCancel() {
+        self.scanRecorder.stopPlacement()
     }
 }

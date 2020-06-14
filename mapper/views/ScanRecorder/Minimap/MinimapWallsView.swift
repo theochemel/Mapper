@@ -39,8 +39,7 @@ class MinimapWallsView: UIView {
         let path = UIBezierPath()
         
         for plane in planes.filter({ $0.shouldBeTreatedAsWall() }) {
-            let translation = simd_float3(plane.transform[3][0], plane.transform[3][1], plane.transform[3][2])
-            let adjustedPosition = translation + plane.rotation.act(plane.position)
+            let position = plane.position
             
             let origin = self.center
                         
@@ -49,8 +48,8 @@ class MinimapWallsView: UIView {
             
             let rotatedExtent = simd_float2(plane.extent.x * cos(roundedYaw), plane.extent.x * sin(roundedYaw))
             
-            let startPosition = simd_float2(adjustedPosition.x, adjustedPosition.z) - 0.5 * rotatedExtent
-            let endPosition = simd_float2(adjustedPosition.x, adjustedPosition.z) + 0.5 * rotatedExtent
+            let startPosition = simd_float2(position.x, position.z) - 0.5 * rotatedExtent
+            let endPosition = simd_float2(position.x, position.z) + 0.5 * rotatedExtent
             
             let startDrawPoint = CGPoint(x: CGFloat(startPosition.x - cameraPosition.x) * self.scale + origin.x, y: CGFloat(startPosition.y - cameraPosition.z) * self.scale + origin.y)
             let endDrawPoint = CGPoint(x: CGFloat(endPosition.x - cameraPosition.x) * self.scale + origin.x, y: CGFloat(endPosition.y - cameraPosition.z) * self.scale + origin.y)

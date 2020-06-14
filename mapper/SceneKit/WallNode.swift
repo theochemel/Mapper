@@ -34,6 +34,6 @@ class WallNode: SCNNode {
     public func update(from plane: Plane) {
         guard let particleSystem = self.particleSystems?.first else { return }
         particleSystem.emitterShape = SCNPlane(width: CGFloat(plane.extent.x), height: CGFloat(plane.extent.z))
-        particleSystem.birthRate = CGFloat(plane.extent.x * plane.extent.z * 120.0)
+        particleSystem.birthRate = CGFloat(plane.extent.x * plane.extent.z * 60.0)
     }
 }

@@ -3,23 +3,22 @@ import SwiftUI
 
 struct ScanView: View {
     @ObservedObject var scan: Scan
-    var dateCreatedString: String? {
+    var dateCreatedString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, d MMM y"
-        guard let dateCreated = self.scan.dateCreated else { return nil }
-        return formatter.string(from: dateCreated)
+        return formatter.string(from: self.scan.dateCreated)
     }
     
     var body: some View {
         HStack {
             VStack {
                 VStack(alignment: .leading, spacing: 12.0) {
-                    Text(self.scan.name ?? "Unknown")
+                    Text(self.scan.name)
                         .font(.largeTitle)
                     HStack {
-                        Text("Created on \(self.dateCreatedString ?? "Unknown")")
+                        Text("Created on \(self.dateCreatedString)")
                         Spacer()
-                        Text("\(self.scan.address ?? "null") |  \(self.scan.floor ?? "null")")
+                        Text("\(self.scan.address) |  \(self.scan.floor)")
                     }
                     Divider()
                 }.padding([.top, .leading, .trailing], 24.0)

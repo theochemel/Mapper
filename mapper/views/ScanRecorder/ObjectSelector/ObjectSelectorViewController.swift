@@ -2,6 +2,8 @@ import Foundation
 import UIKit
 
 class ObjectSelectorViewController: UIViewController {
+    
+    public weak var delegate: ObjectSelectorDelegate?
         
     public var objectSelectorView: ObjectSelectorView!
     
@@ -14,6 +16,10 @@ class ObjectSelectorViewController: UIViewController {
         self.objectSelectorView = ObjectSelectorView()
         self.view = objectSelectorView
         self.objectSelectorView.addObjectButton.addTarget(self, action: #selector(self.addObjectButtonDidTouchUpInside), for: .touchUpInside)
+        
+        for button in objectSelectorView.objectCategoryButtons {
+            button.addTarget(self, action: #selector(self.objectCategoryButtonDidTouchUpInside(_:)), for: .touchUpInside)
+        }
         
         self.heightConstraint = self.objectSelectorView.heightAnchor.constraint(equalToConstant: self.objectSelectorView.closedHeight())
         
@@ -59,8 +65,13 @@ class ObjectSelectorViewController: UIViewController {
     @objc private func addObjectButtonDidTouchUpInside() {
         if self.selectorIsOpen {
             self.close(animate: false)
+            self.delegate?.didCancel()
         } else {
             self.open(animate: false)
         }
+    }
+    
+    @objc private func objectCategoryButtonDidTouchUpInside(_ sender: ObjectSelectorCategoryButton) {
+        self.delegate?.didSelectObject(withCategory: sender.category)
     }
 }

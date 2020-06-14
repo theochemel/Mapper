@@ -5,7 +5,7 @@ class ObjectSelectorView: UIView {
     
     public var blurView: UIVisualEffectView!
     public var addObjectButton: UIButton!
-    public var objectCategoryButtons: [Object.Category: UIButton] = [:]
+    public var objectCategoryButtons: [ObjectSelectorCategoryButton] = []
     public var objectCategoryStackView: UIStackView!
 
     public init() {
@@ -30,15 +30,13 @@ class ObjectSelectorView: UIView {
         self.addSubview(addObjectButton)
         self.layoutAddObjectButton()
         
-        for objectCategory in Object.Category.allCases {
-            let objectCategoryButton = UIButton(frame: .zero)
-            objectCategoryButton.setTitle(Object.displayName(for: objectCategory), for: .normal)
-            objectCategoryButton.tintColor = .white
-            self.objectCategoryButtons[objectCategory] = objectCategoryButton
+        for objectCategory in Object.Category.allCases.sorted(by: { $0.displayName() < $1.displayName() }) {
+            let objectCategoryButton = ObjectSelectorCategoryButton(for: objectCategory)
+            self.objectCategoryButtons.append(objectCategoryButton)
         }
         
         self.objectCategoryStackView = {
-            let stackView = UIStackView(arrangedSubviews: Array(self.objectCategoryButtons.values))
+            let stackView = UIStackView(arrangedSubviews: self.objectCategoryButtons)
             stackView.axis = .vertical
             return stackView
         }()
