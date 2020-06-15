@@ -24,7 +24,7 @@ struct ScanView: View {
                 }.padding([.top, .leading, .trailing], 24.0)
                 Spacer()
                 if self.scan.isScanCompleted {
-                    ScanVisualizationView()
+                    ScanVisualizationView(scan: self.scan)
                 } else {
                     StartScanView(scan: self.scan)
                 }

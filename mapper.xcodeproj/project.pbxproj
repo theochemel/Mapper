@@ -29,6 +29,10 @@
 		E467D40C24918338005887AD /* MinimapWallsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E467D40B24918338005887AD /* MinimapWallsView.swift */; };
 		E46B61E3249151B900C4E7A8 /* SCNAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */; };
 		E46B61E52491576C00C4E7A8 /* WallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B61E42491576C00C4E7A8 /* WallNode.swift */; };
+		E46CF9112497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9102497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift */; };
+		E46CF9142497B24700838A6C /* MeshVisualizationHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9132497B24700838A6C /* MeshVisualizationHostView.swift */; };
+		E46CF9162497B62200838A6C /* MeshVisualizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9152497B62200838A6C /* MeshVisualizationViewController.swift */; };
+		E46CF9182497B80600838A6C /* MeshVisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9172497B80600838A6C /* MeshVisualizationView.swift */; };
 		E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C3248980CD008B5C9A /* AppDelegate.swift */; };
 		E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C5248980CD008B5C9A /* SceneDelegate.swift */; };
 		E46D26CA248980CF008B5C9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46D26C9248980CF008B5C9A /* Assets.xcassets */; };
@@ -83,6 +87,10 @@
 		E467D40B24918338005887AD /* MinimapWallsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapWallsView.swift; sourceTree = "<group>"; };
 		E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SCNAssets.scnassets; sourceTree = "<group>"; };
 		E46B61E42491576C00C4E7A8 /* WallNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallNode.swift; sourceTree = "<group>"; };
+		E46CF9102497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderViewControllerDelegate.swift; sourceTree = "<group>"; };
+		E46CF9132497B24700838A6C /* MeshVisualizationHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshVisualizationHostView.swift; sourceTree = "<group>"; };
+		E46CF9152497B62200838A6C /* MeshVisualizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshVisualizationViewController.swift; sourceTree = "<group>"; };
+		E46CF9172497B80600838A6C /* MeshVisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshVisualizationView.swift; sourceTree = "<group>"; };
 		E46D26C0248980CD008B5C9A /* mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46D26C3248980CD008B5C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E46D26C5248980CD008B5C9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -148,6 +156,25 @@
 			path = SceneKit;
 			sourceTree = "<group>";
 		};
+		E46CF9122497B23200838A6C /* ScanVisualization */ = {
+			isa = PBXGroup;
+			children = (
+				E4D981B5248D8CC600F23C3A /* ScanVisualizationView.swift */,
+				E46CF9192497B80900838A6C /* MeshVisualization */,
+			);
+			path = ScanVisualization;
+			sourceTree = "<group>";
+		};
+		E46CF9192497B80900838A6C /* MeshVisualization */ = {
+			isa = PBXGroup;
+			children = (
+				E46CF9132497B24700838A6C /* MeshVisualizationHostView.swift */,
+				E46CF9152497B62200838A6C /* MeshVisualizationViewController.swift */,
+				E46CF9172497B80600838A6C /* MeshVisualizationView.swift */,
+			);
+			path = MeshVisualization;
+			sourceTree = "<group>";
+		};
 		E46D26B7248980CC008B5C9A = {
 			isa = PBXGroup;
 			children = (
@@ -192,6 +219,7 @@
 		E46D26D7248980EE008B5C9A /* views */ = {
 			isa = PBXGroup;
 			children = (
+				E46CF9122497B23200838A6C /* ScanVisualization */,
 				E4D981BB248D939200F23C3A /* ScanRecorder */,
 				E46D26DA24898135008B5C9A /* ContentView.swift */,
 				E46D26D8248980FD008B5C9A /* ScanListView.swift */,
@@ -199,7 +227,6 @@
 				E46D26E724898C09008B5C9A /* CreateScanView.swift */,
 				E46D26E92489986C008B5C9A /* ScanView.swift */,
 				E46252DF2489B7B70078DDD7 /* SettingsView.swift */,
-				E4D981B5248D8CC600F23C3A /* ScanVisualizationView.swift */,
 				E4D981B7248D8D0800F23C3A /* StartScanView.swift */,
 			);
 			path = views;
@@ -226,6 +253,7 @@
 				E4D981B9248D931100F23C3A /* ScanRecorderHostView.swift */,
 				E4D981BC248D93AA00F23C3A /* ScanRecorderViewController.swift */,
 				E40CDA98248DE2D400D9B710 /* ScanRecorderView.swift */,
+				E46CF9102497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift */,
 				E4DE6B1E249599D100A491A6 /* Coaching */,
 				E4DE6B1D249599CA00A491A6 /* ObjectSelector */,
 				E4DE6B1C249599C100A491A6 /* Minimap */,
@@ -387,6 +415,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E40CDAA1248EAD4200D9B710 /* ObjectSelectorViewController.swift in Sources */,
+				E46CF9142497B24700838A6C /* MeshVisualizationHostView.swift in Sources */,
 				E417195C24903ECD00FEC62C /* Plane.swift in Sources */,
 				E4E9F65224953E060022BAD3 /* Scan.swift in Sources */,
 				E4DE6B132495552300A491A6 /* OcclusionNode.swift in Sources */,
@@ -403,6 +432,7 @@
 				E46D26EA2489986C008B5C9A /* ScanView.swift in Sources */,
 				E4E9F64424952E060022BAD3 /* Plane+Alignment.swift in Sources */,
 				E4171950248FF73A00FEC62C /* MinimapView.swift in Sources */,
+				E46CF9162497B62200838A6C /* MeshVisualizationViewController.swift in Sources */,
 				E40CDA9B248EA19100D9B710 /* CoachingView.swift in Sources */,
 				E40CDA9F248EAD3600D9B710 /* ObjectSelectorView.swift in Sources */,
 				E4E9F64C2495307D0022BAD3 /* Object+Category.swift in Sources */,
@@ -410,6 +440,8 @@
 				E4D981B8248D8D0800F23C3A /* StartScanView.swift in Sources */,
 				E4D981BA248D931100F23C3A /* ScanRecorderHostView.swift in Sources */,
 				E4DE6B11249554EB00A491A6 /* ScanRecorder+ARSCNViewDelegate.swift in Sources */,
+				E46CF9112497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift in Sources */,
+				E46CF9182497B80600838A6C /* MeshVisualizationView.swift in Sources */,
 				E46D26DD2489818D008B5C9A /* ScanListCellView.swift in Sources */,
 				E4171954248FFE9400FEC62C /* ARViewProvider.swift in Sources */,
 				E4DE6B172495593E00A491A6 /* Object+PlacementCategory.swift in Sources */,

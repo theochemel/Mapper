@@ -10,6 +10,8 @@ class ScanRecorderViewController: UIViewController {
     private var objectSelectorViewController: ObjectSelectorViewController!
     private var minimapViewController: MinimapViewController!
     
+    var delegate: ScanRecorderViewControllerDelegate?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -88,6 +90,7 @@ extension ScanRecorderViewController: ScanRecorderDelegate {
     
     func didFinishScan(_ rawScan: RawScan) {
         self.scanRecorderView.arView.session.pause()
+        self.delegate?.didFinishScan(rawScan)
         self.navigationController?.popViewController(animated: true)
     }
 }

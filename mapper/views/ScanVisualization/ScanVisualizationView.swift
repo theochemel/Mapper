@@ -2,6 +2,8 @@ import Foundation
 import SwiftUI
 
 struct ScanVisualizationView: View {
+    @ObservedObject var scan: Scan
+    
     var body: some View {
         TabView {
             Text("2D Floorplan View")
@@ -12,7 +14,7 @@ struct ScanVisualizationView: View {
                 .tabItem {
                     Text("3D Reconstruction")
             }
-            Text("3D Mesh")
+            MeshVisualizationHostView(mesh: self.scan.cleanedScan!.mesh)
                 .tabItem {
                     Text("3D Mesh")
             }

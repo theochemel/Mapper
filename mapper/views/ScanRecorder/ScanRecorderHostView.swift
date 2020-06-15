@@ -3,14 +3,32 @@ import SwiftUI
 import UIKit
 
 struct ScanRecorderHostView: UIViewControllerRepresentable {
+    @ObservedObject var scan: Scan
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ScanRecorderHostView>) -> ScanRecorderViewController {
         let scanRecorderViewController = ScanRecorderViewController()
         scanRecorderViewController.navigationController?.navigationBar.isHidden = true
+        scanRecorderViewController.delegate = context.coordinator
         return scanRecorderViewController
     }
     
     func updateUIViewController(_ uiViewController: ScanRecorderViewController, context: UIViewControllerRepresentableContext<ScanRecorderHostView>) {
 
+    }
+    
+    func makeCoordinator() -> Coordinator {
+        return Coordinator(self)
+    }
+    
+    class Coordinator: ScanRecorderViewControllerDelegate {
+        var parent: ScanRecorderHostView
+        
+        init(_ parent: ScanRecorderHostView) {
+            self.parent = parent
+        }
+        
+        func didFinishScan(_ rawScan: RawScan) {
+            self.parent.scan.didFinishRawScan(rawScan)
+        }
     }
 }
