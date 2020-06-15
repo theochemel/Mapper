@@ -3,6 +3,7 @@ import SwiftUI
 import UIKit
 
 struct ScanRecorderHostView: UIViewControllerRepresentable {
+    @Environment(\.managedObjectContext) var managedObjectContext
     @ObservedObject var scan: Scan
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ScanRecorderHostView>) -> ScanRecorderViewController {
@@ -29,6 +30,12 @@ struct ScanRecorderHostView: UIViewControllerRepresentable {
         
         func didFinishScan(_ rawScan: RawScan) {
             self.parent.scan.didFinishRawScan(rawScan)
+            
+            do {
+                try parent.managedObjectContext.save()
+            } catch (let error) {
+                fatalError("CoreData save failed: \(error.localizedDescription)")
+            }
         }
     }
 }

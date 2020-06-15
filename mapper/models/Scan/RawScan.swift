@@ -1,6 +1,7 @@
 import Foundation
+import CoreData
 
-public final class RawScan: NSObject, NSCoding, Codable  {
+public final class RawScan: Codable  {
     
     var planes: [UUID: Plane]
     var objects: [UUID: Object]

@@ -2,12 +2,12 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Scan" representedClassName="Scan" syncable="YES">
         <attribute name="address" attributeType="String"/>
-        <attribute name="cleanedScan" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="CleanedScan"/>
+        <attribute name="cleanedScanData" optional="YES" attributeType="Binary"/>
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="floor" attributeType="String"/>
         <attribute name="isScanCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="rawScan" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData" customClassName="RawScan"/>
+        <attribute name="rawScanData" optional="YES" attributeType="Binary"/>
     </entity>
     <elements>
         <element name="Scan" positionX="-54" positionY="-9" width="128" height="148"/>

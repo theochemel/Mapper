@@ -1,6 +1,7 @@
 import Foundation
+import CoreData
 
-public final class CleanedScan: NSObject, NSCoding, Codable {
+public final class CleanedScan: Codable {
 
     var mesh: Mesh
     

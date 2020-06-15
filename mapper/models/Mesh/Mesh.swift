@@ -1,7 +1,7 @@
 import Foundation
 import ARKit
 
-public class Mesh: Codable {
+public struct Mesh: Codable {
     
     var vertices: [[simd_float3]]
     var normals: [[simd_float3]]
