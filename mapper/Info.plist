@@ -22,6 +22,21 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+    <key>NSAppTransportSecurity</key>
+    <dict>
+      <key>NSAllowsArbitraryLoads</key>
+      <false/>
+      <key>NSExceptionDomains</key>
+      <dict>
+          <key>10.0.0.13</key>
+        <dict>
+          <key>NSIncludesSubdomains</key>
+          <true/>
+          <key>NSExceptionAllowsInsecureHTTPLoads</key>
+          <true/>
+        </dict>
+      </dict>
+    </dict>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>

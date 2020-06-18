@@ -4,6 +4,7 @@ import UIKit
 
 struct ScanRecorderHostView: UIViewControllerRepresentable {
     @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @ObservedObject var scan: Scan
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ScanRecorderHostView>) -> ScanRecorderViewController {
@@ -29,7 +30,7 @@ struct ScanRecorderHostView: UIViewControllerRepresentable {
         }
         
         func didFinishScan(_ rawScan: RawScan) {
-            self.parent.scan.didFinishRawScan(rawScan)
+            self.parent.scan.didFinishRawScan(rawScan, backendURL: self.parent.userDefaultsManager.backendURL)
             
             do {
                 try parent.managedObjectContext.save()

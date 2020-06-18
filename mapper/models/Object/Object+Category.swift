@@ -24,7 +24,7 @@ extension Object {
             if [.window, .door].contains(self) {
                 return .wallBox2D
             } else {
-                return .floorBox3D
+                return .floorBox2D
             }
         }
     }

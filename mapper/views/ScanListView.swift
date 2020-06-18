@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ScanListView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     @FetchRequest(
         entity: Scan.entity(),
         sortDescriptors: [
@@ -30,6 +31,7 @@ struct ScanListView: View {
                     }
                     .sheet(isPresented: self.$isShowingSettingsView) {
                         SettingsView()
+                            .environmentObject(self.userDefaultsManager)
                     }
                 , trailing:
                 HStack {

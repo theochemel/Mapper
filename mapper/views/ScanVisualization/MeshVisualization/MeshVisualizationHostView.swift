@@ -11,6 +11,5 @@ struct MeshVisualizationHostView: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: MeshVisualizationViewController, context: UIViewControllerRepresentableContext<MeshVisualizationHostView>) {
-        
     }
 }

@@ -73,6 +73,7 @@ class ScanRecorderViewController: UIViewController {
         } else {
             sender.setTitle("SAVE", for: .normal)
             self.scanRecorder.startRecording()
+            self.coachingViewController.hide(animate: true)
         }
     }
     

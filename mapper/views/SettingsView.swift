@@ -4,32 +4,26 @@ import SwiftUI
 struct SettingsView: View {
     @Environment(\.managedObjectContext) var managedObjectContext
     @Environment(\.presentationMode) var presentationMode
-    @State private var backendURL: String = ""
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
+    
     var body: some View {
         VStack {
             HStack {
+                Spacer()
                 Button(action: {
                     self.presentationMode.wrappedValue.dismiss()
                 }) {
-                    Text("Cancel")
-                }
-                Spacer()
-                Button(action: {
-                    self.save()
-                }) {
-                    Text("Save")
+                    Text("Done")
                 }
             }
             .padding()
             Text("Settings")
                 .font(.largeTitle)
             Form {
-                TextField("Backend URL", text: self.$backendURL)
+                Text("Backend URL")
+                    .fontWeight(.bold)
+                TextField("Backend URL", text: self.$userDefaultsManager.backendURL)
             }
         }
-    }
-    
-    private func save() {
-        
     }
 }

@@ -54,4 +54,18 @@ public struct Mesh: Codable {
             self.faces.append(faces)
         }
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case vertices
+        case normals
+        case faces
+    }
+    
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        
+        self.vertices = try container.decode([[simd_float3]].self, forKey: .vertices)
+        self.normals = try container.decode([[simd_float3]].self, forKey: .normals)
+        self.faces = try container.decode([[simd_uint3]].self, forKey: .faces)
+    }
 }

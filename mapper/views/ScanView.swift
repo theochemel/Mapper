@@ -18,7 +18,7 @@ struct ScanView: View {
                     HStack {
                         Text("Created on \(self.dateCreatedString)")
                         Spacer()
-                        Text("\(self.scan.address) |  \(self.scan.floor)")
+                        Text("\(self.scan.address)  |  \(self.scan.floor)")
                     }
                     Divider()
                 }.padding([.top, .leading, .trailing], 24.0)
@@ -30,17 +30,6 @@ struct ScanView: View {
                 }
                 Spacer(minLength: 0.0)
             }
-            Spacer()
         }
-    }
-}
-
-struct ScanView_Previews: PreviewProvider {
-    
-    static var previews: some View {
-        let scan = Scan()
-        scan.name = "Test Scan"
-        scan.dateCreated = Date()
-        return ScanView(scan: scan)
     }
 }

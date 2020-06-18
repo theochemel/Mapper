@@ -17,7 +17,7 @@ public class Scan: NSManagedObject {
             do {
                 return try JSONDecoder().decode(RawScan.self, from: rawScanData as Data)
             } catch(let error) {
-                print(error.localizedDescription)
+                print("Error decoding rawScanData: ", error)
                 return nil
             }
         }
@@ -27,7 +27,7 @@ public class Scan: NSManagedObject {
             do {
                 self.rawScanData = try JSONEncoder().encode(rawScan) as NSData
             } catch(let error) {
-                print(error.localizedDescription)
+                print("Error encoding rawScan: ", error)
                 self.rawScanData = nil
             }
         }
@@ -39,7 +39,7 @@ public class Scan: NSManagedObject {
             do {
                 return try JSONDecoder().decode(CleanedScan.self, from: cleanedScanData as Data)
             } catch(let error) {
-                print(error.localizedDescription)
+                print("Error decoding cleanedScanData: ", error)
                 return nil
             }
         }
@@ -49,17 +49,51 @@ public class Scan: NSManagedObject {
             do {
                 self.cleanedScanData = try JSONEncoder().encode(cleanedScan) as NSData
             } catch(let error) {
-                print(error.localizedDescription)
+                print("Error encoding cleanedScan: ", error)
                 self.cleanedScanData = nil
             }
         }
 
     }
     
-    public func didFinishRawScan(_ rawScan: RawScan) {
+    public func didFinishRawScan(_ rawScan: RawScan, backendURL: String) {
         self.rawScan = rawScan
         self.isScanCompleted = true
+                
+        guard let url = URL(string: backendURL) else { return }
         
-        self.cleanedScan = CleanedScan(mesh: rawScan.mesh)
+        do {
+            let rawScanData = try JSONEncoder().encode(rawScan)
+            
+            var request = URLRequest(url: url)
+            request.httpMethod = "POST"
+            request.httpBody = rawScanData
+            
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                guard error == nil else {
+                    print("Network error: ", error as Any)
+                    return
+                    // show error UI
+                }
+                
+                guard let data = data else { print("No data!"); return }
+
+                print(data)
+                
+                do {
+                    self.cleanedScan = try JSONDecoder().decode(CleanedScan.self, from: data)
+                    try DispatchQueue.main.sync {
+                        try self.managedObjectContext?.save()
+                    }
+                } catch(let error) {
+                    print("Error decoding or saving: ", error)
+                }
+            }
+            
+            task.resume()
+            
+        } catch(let error) {
+            print("Error encoding: ", error)
+        }
     }
 }
