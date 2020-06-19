@@ -14,7 +14,6 @@ class FloorplanVisualizationView: UIView {
         self.backgroundColor = .clear
         
         self.wallsView = UIView()
-        wallsView.clipsToBounds = true
         
         self.wallsLayer = {
             let layer = CAShapeLayer()
@@ -46,8 +45,9 @@ class FloorplanVisualizationView: UIView {
         let yValues = points.map { $0.y }
         guard let minX = xValues.min(), let maxX = xValues.max(), let minY = yValues.min(), let maxY = yValues.max() else { return }
         
+        self.wallsView.frame.size = CGSize(width: self.bounds.width + 64.0, height: self.bounds.height + 64.0)
         self.wallsLayer.frame.size = self.bounds.size
-        self.wallsView.frame.size = self.wallsLayer.frame.size
+        self.wallsLayer.frame.origin = CGPoint(x: 32.0, y: 32.0)
         
         let xScale =  self.bounds.width / CGFloat(maxX - minX)
         let yScale = self.bounds.height / CGFloat(maxY - minY)
@@ -56,14 +56,14 @@ class FloorplanVisualizationView: UIView {
         let path = UIBezierPath()
         
         for wall in floorplan.walls {
-            let xCenteringOffset = yScale < xScale ? self.bounds.width - scale * CGFloat(maxX - minX) / 2.0 : 0.0
-            let yCenteringOffset = xScale < yScale ? self.bounds.height - scale * CGFloat(maxY - minY) / 2.0 : 0.0
+            let xCenteringOffset = yScale < xScale ? (self.bounds.width - scale * CGFloat(maxX - minX)) / 2.0 : 0.0
+            let yCenteringOffset = xScale < yScale ? (self.bounds.height - scale * CGFloat(maxY - minY)) / 2.0 : 0.0
             
             
-            let startPoint = CGPoint(x: CGFloat(wall.start.position.x + (maxX - minX) / 2.0) * scale + xCenteringOffset,
-                                     y: CGFloat(wall.start.position.y + (maxY - minY) / 2.0) * scale + yCenteringOffset)
-            let endPoint = CGPoint(x: CGFloat(wall.end.position.x + (maxX - minX) / 2.0) * scale + xCenteringOffset,
-                                   y: CGFloat(wall.end.position.y + (maxY - minY) / 2.0) * scale + yCenteringOffset)
+            let startPoint = CGPoint(x: CGFloat(wall.start.position.x - minX) * scale + xCenteringOffset,
+                                     y: CGFloat(wall.start.position.y - minY) * scale + yCenteringOffset)
+            let endPoint = CGPoint(x: CGFloat(wall.end.position.x - minX) * scale + xCenteringOffset,
+                                   y: CGFloat(wall.end.position.y - minY) * scale + yCenteringOffset)
             
             path.move(to: startPoint)
             path.addLine(to: endPoint)
