@@ -5,24 +5,27 @@ import ARKit
 class FloorplanVisualizationView: UIView {
     
     public var scrollView: UIScrollView!
-    private var wallsView: UIView!
-    private var wallsLayer: CAShapeLayer!
+    public var scaleView: FloorplanVisualizationScaleView!
+    public var scaleViewWidthConstraint: NSLayoutConstraint!
+    public var screenSpaceMapScale: CGFloat!
+    private var mapView: UIView!
+    private var mapLayer: CAShapeLayer!
     
     public init() {
         super.init(frame: .zero)
         
         self.backgroundColor = .clear
         
-        self.wallsView = UIView()
+        self.mapView = UIView()
         
-        self.wallsLayer = {
+        self.mapLayer = {
             let layer = CAShapeLayer()
             layer.strokeColor = UIColor.systemBlue.cgColor
             layer.lineWidth = 6.0
             layer.fillColor = .none
             return layer
         }()
-        self.wallsView.layer.addSublayer(self.wallsLayer)
+        self.mapView.layer.addSublayer(self.mapLayer)
         
         self.scrollView = UIScrollView()
         self.scrollView.minimumZoomScale = 0.2
@@ -30,9 +33,12 @@ class FloorplanVisualizationView: UIView {
         self.scrollView.showsVerticalScrollIndicator = false
         self.scrollView.showsHorizontalScrollIndicator = false
         self.addSubview(self.scrollView)
-        self.scrollView.addSubview(self.wallsView)
+        self.scrollView.addSubview(self.mapView)
         self.layoutScrollView()
         
+        self.scaleView = FloorplanVisualizationScaleView()
+        self.addSubview(scaleView)
+        self.layoutScaleView()
     }
     
     required init?(coder: NSCoder) {
@@ -45,13 +51,15 @@ class FloorplanVisualizationView: UIView {
         let yValues = points.map { $0.y }
         guard let minX = xValues.min(), let maxX = xValues.max(), let minY = yValues.min(), let maxY = yValues.max() else { return }
         
-        self.wallsView.frame.size = CGSize(width: self.bounds.width + 64.0, height: self.bounds.height + 64.0)
-        self.wallsLayer.frame.size = self.bounds.size
-        self.wallsLayer.frame.origin = CGPoint(x: 32.0, y: 32.0)
+        self.mapView.frame.size = CGSize(width: self.bounds.width + 64.0, height: self.bounds.height + 64.0)
+        self.mapLayer.frame.size = self.bounds.size
+        self.mapLayer.frame.origin = CGPoint(x: 32.0, y: 32.0)
         
         let xScale =  self.bounds.width / CGFloat(maxX - minX)
         let yScale = self.bounds.height / CGFloat(maxY - minY)
         guard let scale = [xScale, yScale].min() else { return }
+        
+        self.screenSpaceMapScale = scale
         
         let path = UIBezierPath()
         
@@ -67,11 +75,41 @@ class FloorplanVisualizationView: UIView {
             
             path.move(to: startPoint)
             path.addLine(to: endPoint)
+            
+            print("Wall: ", wall.id, wall.start.position, wall.end.position)
         }
         
-        self.wallsLayer.path = path.cgPath
+        self.mapLayer.path = path.cgPath
         
-        self.scrollView.contentSize = CGSize(width: self.wallsView.frame.width, height: self.wallsView.frame.height)
+        for object in floorplan.objects {
+            let xCenteringOffset = yScale < xScale ? (self.bounds.width - scale * CGFloat(maxX - minX)) / 2.0 : 0.0
+            let yCenteringOffset = xScale < yScale ? (self.bounds.height - scale * CGFloat(maxY - minY)) / 2.0 : 0.0
+            
+            var origin = CGPoint(x: CGFloat(object.position.x - (object.extent.x / 2.0) - minX) * scale + xCenteringOffset + 32.0,
+                                 y: CGFloat(object.position.z - (object.extent.z / 2.0) - minY) * scale + yCenteringOffset + 32.0)
+            
+            var extent = CGSize(width: CGFloat(object.extent.x) * scale,
+                                height: CGFloat(object.extent.z) * scale)
+            
+            if object.category.placementCategory() == .wallBox2D {
+                if extent.width < extent.height {
+                    extent.width = 8.0
+                } else {
+                    extent.height = 8.0
+                }
+            }
+            
+            let objectView = FloorplanVisualizationObjectView(for: object)
+            objectView.frame = CGRect(origin: origin, size: extent)
+            self.mapView.addSubview(objectView)
+            
+            print("Object: ", object.id, object.position, object.extent)
+        }
+        
+        self.scaleViewWidthConstraint.constant = CGFloat(scale)
+        self.setNeedsLayout()
+        
+        self.scrollView.contentSize = CGSize(width: self.mapView.frame.width, height: self.mapView.frame.height)
         self.scrollView.zoomScale = 0.9
     }
     
@@ -82,6 +120,17 @@ class FloorplanVisualizationView: UIView {
             self.scrollView.trailingAnchor.constraint(equalTo: self.trailingAnchor),
             self.scrollView.topAnchor.constraint(equalTo: self.topAnchor),
             self.scrollView.bottomAnchor.constraint(equalTo: self.bottomAnchor),
+        ])
+    }
+    
+    private func layoutScaleView() {
+        self.scaleView.translatesAutoresizingMaskIntoConstraints = false
+        self.scaleViewWidthConstraint = self.scaleView.widthAnchor.constraint(equalToConstant: 0.0)
+        NSLayoutConstraint.activate([
+            self.scaleView.trailingAnchor.constraint(equalTo: self.safeAreaLayoutGuide.trailingAnchor, constant: -32.0),
+            self.scaleViewWidthConstraint,
+            self.scaleView.bottomAnchor.constraint(equalTo: self.safeAreaLayoutGuide.bottomAnchor, constant: -16.0),
+            self.scaleView.heightAnchor.constraint(equalToConstant: 48.0)
         ])
     }
 }

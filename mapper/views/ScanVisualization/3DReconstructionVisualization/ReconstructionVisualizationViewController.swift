@@ -12,6 +12,9 @@ class ReconstructionVisualizationViewController: UIViewController {
         
         self.reconstructionVisualizationView = ReconstructionVisualizationView()
         self.view = self.reconstructionVisualizationView
+        
+        let dragInteraction = UIDragInteraction(delegate: self)
+        self.reconstructionVisualizationView.addInteraction(dragInteraction)
     }
     
     override func viewWillAppear(_ animated: Bool) {

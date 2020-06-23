@@ -96,4 +96,37 @@ public class Scan: NSManagedObject {
             print("Error encoding: ", error)
         }
     }
+    
+    public func refreshCleanedScan(backendURL: String) {
+        guard let url = URL(string: backendURL) else { return }
+        
+        guard let nsData = self.rawScanData else { return }
+        
+        var request = URLRequest(url: url)
+        request.httpMethod = "POST"
+        request.httpBody = Data(referencing: nsData)
+        
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            guard error == nil else {
+                print("Network error: ", error as Any)
+                return
+                // show error UI
+            }
+            
+            guard let data = data else { print("No data!"); return }
+
+            print(data)
+            
+            do {
+                self.cleanedScan = try JSONDecoder().decode(CleanedScan.self, from: data)
+                try DispatchQueue.main.sync {
+                    try self.managedObjectContext?.save()
+                }
+            } catch(let error) {
+                print("Error decoding or saving: ", error)
+            }
+        }
+        
+        task.resume()
+    }
 }

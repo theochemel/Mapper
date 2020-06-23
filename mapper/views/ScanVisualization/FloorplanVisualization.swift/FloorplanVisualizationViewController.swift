@@ -5,6 +5,7 @@ class FloorplanVisualizationViewController: UIViewController, UIScrollViewDelega
     
     public var floorplan: Floorplan!
     public var floorplanVisualizationView: FloorplanVisualizationView!
+    private var initialContentSize: CGSize?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -16,6 +17,8 @@ class FloorplanVisualizationViewController: UIViewController, UIScrollViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         self.floorplanVisualizationView.draw(floorplan: self.floorplan)
+        
+        self.initialContentSize = self.floorplanVisualizationView.scrollView.contentSize
     }
     
     func viewForZooming(in scrollView: UIScrollView) -> UIView? {
@@ -27,5 +30,10 @@ class FloorplanVisualizationViewController: UIViewController, UIScrollViewDelega
         let offsetX = max((scrollView.bounds.width - scrollView.contentSize.width) * 0.5, 0)
         let offsetY = max((scrollView.bounds.height - scrollView.contentSize.height) * 0.5, 0)
         scrollView.contentInset = UIEdgeInsets(top: offsetY, left: offsetX, bottom: 0, right: 0)
+        
+        if let initialContentSize = self.initialContentSize {
+            let zoomScale = scrollView.contentSize.width / initialContentSize.width
+            self.floorplanVisualizationView.scaleViewWidthConstraint.constant = self.floorplanVisualizationView.screenSpaceMapScale * zoomScale
+        }
     }
 }

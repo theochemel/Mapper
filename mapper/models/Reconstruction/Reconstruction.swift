@@ -4,6 +4,7 @@ import ModelIO
 
 public final class Reconstruction: Codable {
     
+    var ifcData: String
     var objData: String
     var mtlData: String
     
@@ -24,6 +25,7 @@ public final class Reconstruction: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
+        case ifcData = "ifc_data"
         case objData = "obj_data"
         case mtlData = "mtl_data"
     }

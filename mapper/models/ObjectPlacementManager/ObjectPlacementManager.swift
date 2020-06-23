@@ -81,6 +81,12 @@ class ObjectPlacementManager {
         return nil
     }
     
+    public func getCurrentCursorPlaneID() -> UUID? {
+        let hitTestResults = self.arViewProvider.arView.hitTest(self.arViewProvider.arView.center, types: [.existingPlaneUsingExtent])
+        
+        return (hitTestResults.first?.anchor as? ARPlaneAnchor)?.identifier
+    }
+    
     public func getHorizontalAxisPerpendicularToDevice() -> BoundAxis.Axis? {
         guard let orientation = self.arViewProvider.arView.pointOfView?.simdEulerAngles else { return nil }
         

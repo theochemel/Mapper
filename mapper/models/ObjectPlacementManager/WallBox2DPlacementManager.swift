@@ -3,6 +3,7 @@ import ARKit
 
 class WallBox2DPlacementManager: ObjectPlacementManager {
     
+    var planeID: UUID?
     var points: [simd_float3] = []
     
     override func addPoint() {
@@ -16,6 +17,8 @@ class WallBox2DPlacementManager: ObjectPlacementManager {
                 }
                 
                 self.boundAxis = BoundAxis(perpAxis, perpAxis.value(from: position))
+                
+                self.planeID = super.getCurrentCursorPlaneID()
             }
             
             self.points.append(position)
@@ -24,7 +27,7 @@ class WallBox2DPlacementManager: ObjectPlacementManager {
                 let center = (self.points[0] + self.points[1]) / 2.0
                 let extent = abs(self.points[0] - self.points[1])
                 
-                let object = Object(position: center, extent: extent, category: self.category)
+                let object = Object(planeID: self.planeID, position: center, extent: extent, category: self.category)
                 self.delegate?.didAddObject(object)
                 let objectNode = ObjectNode(for: object)
                 self.arViewProvider.arView.scene.rootNode.addChildNode(objectNode)

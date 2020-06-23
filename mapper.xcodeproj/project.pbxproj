@@ -29,6 +29,10 @@
 		E419B7F2249BC51B005DEF58 /* FloorplanVisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E419B7F1249BC51B005DEF58 /* FloorplanVisualizationView.swift */; };
 		E419B7F5249BC52C005DEF58 /* Floorplan.swift in Sources */ = {isa = PBXBuildFile; fileRef = E419B7F4249BC52C005DEF58 /* Floorplan.swift */; };
 		E419B7F7249BD1BB005DEF58 /* Point.swift in Sources */ = {isa = PBXBuildFile; fileRef = E419B7F6249BD1BB005DEF58 /* Point.swift */; };
+		E420BAAE24A1220700C26ED0 /* FloorplanVisualizationScaleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420BAAD24A1220700C26ED0 /* FloorplanVisualizationScaleView.swift */; };
+		E420BAB024A1325D00C26ED0 /* FloorplanVisualizationBracketView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420BAAF24A1325D00C26ED0 /* FloorplanVisualizationBracketView.swift */; };
+		E420BAB224A1547B00C26ED0 /* ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E420BAB124A1547B00C26ED0 /* ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift */; };
+		E431D0E024A11FA200F654DC /* FloorplanVisualizationObjectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E431D0DF24A11FA200F654DC /* FloorplanVisualizationObjectView.swift */; };
 		E43EB3BB24968ADB0081ADB2 /* ObjectPlacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43EB3BA24968ADB0081ADB2 /* ObjectPlacementManager.swift */; };
 		E43EB3BD24968E1E0081ADB2 /* CursorNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43EB3BC24968E1E0081ADB2 /* CursorNode.swift */; };
 		E43EB3BF2496B0050081ADB2 /* ObjectPlacementManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E43EB3BE2496B0050081ADB2 /* ObjectPlacementManagerDelegate.swift */; };
@@ -101,6 +105,10 @@
 		E419B7F1249BC51B005DEF58 /* FloorplanVisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorplanVisualizationView.swift; sourceTree = "<group>"; };
 		E419B7F4249BC52C005DEF58 /* Floorplan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Floorplan.swift; sourceTree = "<group>"; };
 		E419B7F6249BD1BB005DEF58 /* Point.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Point.swift; sourceTree = "<group>"; };
+		E420BAAD24A1220700C26ED0 /* FloorplanVisualizationScaleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorplanVisualizationScaleView.swift; sourceTree = "<group>"; };
+		E420BAAF24A1325D00C26ED0 /* FloorplanVisualizationBracketView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorplanVisualizationBracketView.swift; sourceTree = "<group>"; };
+		E420BAB124A1547B00C26ED0 /* ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift"; sourceTree = "<group>"; };
+		E431D0DF24A11FA200F654DC /* FloorplanVisualizationObjectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorplanVisualizationObjectView.swift; sourceTree = "<group>"; };
 		E43EB3BA24968ADB0081ADB2 /* ObjectPlacementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectPlacementManager.swift; sourceTree = "<group>"; };
 		E43EB3BC24968E1E0081ADB2 /* CursorNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CursorNode.swift; sourceTree = "<group>"; };
 		E43EB3BE2496B0050081ADB2 /* ObjectPlacementManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectPlacementManagerDelegate.swift; sourceTree = "<group>"; };
@@ -185,6 +193,9 @@
 				E419B7ED249BC4FD005DEF58 /* FloorplanVisualizationHostView.swift */,
 				E419B7EF249BC50E005DEF58 /* FloorplanVisualizationViewController.swift */,
 				E419B7F1249BC51B005DEF58 /* FloorplanVisualizationView.swift */,
+				E431D0DF24A11FA200F654DC /* FloorplanVisualizationObjectView.swift */,
+				E420BAAD24A1220700C26ED0 /* FloorplanVisualizationScaleView.swift */,
+				E420BAAF24A1325D00C26ED0 /* FloorplanVisualizationBracketView.swift */,
 			);
 			path = FloorplanVisualization.swift;
 			sourceTree = "<group>";
@@ -222,6 +233,7 @@
 			children = (
 				E465C496249A98BE00AA7B6D /* ReconstructionVisualizationHostView.swift */,
 				E465C498249A98D200AA7B6D /* ReconstructionVisualizationViewController.swift */,
+				E420BAB124A1547B00C26ED0 /* ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift */,
 				E465C49A249A98DD00AA7B6D /* ReconstructionVisualizationView.swift */,
 			);
 			path = 3DReconstructionVisualization;
@@ -516,6 +528,7 @@
 				E465C497249A98BE00AA7B6D /* ReconstructionVisualizationHostView.swift in Sources */,
 				E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */,
 				E419B7F2249BC51B005DEF58 /* FloorplanVisualizationView.swift in Sources */,
+				E420BAB024A1325D00C26ED0 /* FloorplanVisualizationBracketView.swift in Sources */,
 				E419B7F5249BC52C005DEF58 /* Floorplan.swift in Sources */,
 				E41719562490085300FEC62C /* ScanState.swift in Sources */,
 				E43EB3BF2496B0050081ADB2 /* ObjectPlacementManagerDelegate.swift in Sources */,
@@ -534,6 +547,7 @@
 				E40CDA9B248EA19100D9B710 /* CoachingView.swift in Sources */,
 				E40CDA9F248EAD3600D9B710 /* ObjectSelectorView.swift in Sources */,
 				E4E9F64C2495307D0022BAD3 /* Object+Category.swift in Sources */,
+				E420BAAE24A1220700C26ED0 /* FloorplanVisualizationScaleView.swift in Sources */,
 				E4E7C5FB249C2053005CA33C /* FloorBox2DPlacementManager.swift in Sources */,
 				E467D40C24918338005887AD /* MinimapWallsView.swift in Sources */,
 				E4D981B8248D8D0800F23C3A /* StartScanView.swift in Sources */,
@@ -546,6 +560,7 @@
 				E4DE6B172495593E00A491A6 /* Object+PlacementCategory.swift in Sources */,
 				E417195A24900CE400FEC62C /* MinimapCameraIndicatorView.swift in Sources */,
 				E46252E02489B7B70078DDD7 /* SettingsView.swift in Sources */,
+				E420BAB224A1547B00C26ED0 /* ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift in Sources */,
 				E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */,
 				E4DE6B1924955D5C00A491A6 /* ObjectSelectorCategoryButton.swift in Sources */,
 				E46D26DB24898135008B5C9A /* ContentView.swift in Sources */,
@@ -553,6 +568,7 @@
 				E419B7E8249BB025005DEF58 /* Reconstruction.swift in Sources */,
 				E417195824900A0D00FEC62C /* ScanRecorderDelegate.swift in Sources */,
 				E419B7EB249BC3E1005DEF58 /* Wall.swift in Sources */,
+				E431D0E024A11FA200F654DC /* FloorplanVisualizationObjectView.swift in Sources */,
 				E4D981B6248D8CC600F23C3A /* ScanVisualizationView.swift in Sources */,
 				E4E9F64624952E0E0022BAD3 /* Plane+Geometry.swift in Sources */,
 				E419B7F0249BC50E005DEF58 /* FloorplanVisualizationViewController.swift in Sources */,

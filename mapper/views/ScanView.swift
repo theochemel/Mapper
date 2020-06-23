@@ -3,6 +3,7 @@ import SwiftUI
 
 struct ScanView: View {
     @ObservedObject var scan: Scan
+    @EnvironmentObject var userDefaultsManager: UserDefaultsManager
     var dateCreatedString: String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, d MMM y"
@@ -18,6 +19,13 @@ struct ScanView: View {
                     HStack {
                         Text("Created on \(self.dateCreatedString)")
                         Spacer()
+                        if self.scan.isScanCompleted {
+                            Button(action: {
+                                self.scan.refreshCleanedScan(backendURL: self.userDefaultsManager.backendURL)
+                            }) {
+                                Text("Reload")
+                            }
+                        }
                         Text("\(self.scan.address)  |  \(self.scan.floor)")
                     }
                     Divider()

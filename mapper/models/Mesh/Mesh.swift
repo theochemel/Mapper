@@ -56,16 +56,109 @@ public struct Mesh: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
+        case verticesCount = "vertices_count"
         case vertices
+        case normalsCount = "normals_count"
         case normals
+        case facesCount = "faces_count"
         case faces
+    }
+    
+    public func encode(to encoder: Encoder) throws {
+        var container = encoder.container(keyedBy: CodingKeys.self)
+        
+        var verticesCount = 0
+        var vertices: [Float32] = []
+        var normalsCount = 0
+        var normals: [Float32] = []
+        var facesCount = 0
+        var faces: [UInt32] = []
+        
+        var verticesOffset = 0
+        
+        for i in 0..<self.vertices.count {
+            let verticesSet = self.vertices[i]
+            let normalsSet = self.normals[i]
+            let facesSet = self.faces[i]
+            
+            verticesCount += verticesSet.count
+            _ = verticesSet.map {
+                vertices.append($0.x)
+                vertices.append($0.y)
+                vertices.append($0.z)
+            }
+            
+            normalsCount += normalsSet.count
+            _ = normalsSet.map {
+                normals.append($0.x)
+                normals.append($0.y)
+                normals.append($0.z)
+            }
+            
+            
+            facesCount += facesSet.count
+            
+            for face in facesSet {
+                faces.append(face.x + UInt32(verticesOffset))
+                faces.append(face.y + UInt32(verticesOffset))
+                faces.append(face.z + UInt32(verticesOffset))
+            }
+            
+            verticesOffset = verticesCount
+        }
+        
+        try container.encode(verticesCount, forKey: .verticesCount)
+        try container.encode(Data(bytes: &vertices, count: vertices.count * MemoryLayout<Float32>.stride), forKey: .vertices)
+        try container.encode(normalsCount, forKey: .normalsCount)
+        try container.encode(Data(bytes: &normals, count: normals.count * MemoryLayout<Float32>.stride), forKey: .normals)
+        try container.encode(facesCount, forKey: .facesCount)
+        try container.encode(Data(bytes: &faces, count: faces.count * MemoryLayout<UInt32>.stride), forKey: .faces)
     }
     
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         
-        self.vertices = try container.decode([[simd_float3]].self, forKey: .vertices)
-        self.normals = try container.decode([[simd_float3]].self, forKey: .normals)
-        self.faces = try container.decode([[simd_uint3]].self, forKey: .faces)
+        let verticesCount = try container.decode(Int.self, forKey: .verticesCount)
+        let normalsCount = try container.decode(Int.self, forKey: .normalsCount)
+        let facesCount = try container.decode(Int.self, forKey: .facesCount)
+        
+        let verticesData = try container.decode(Data.self, forKey: .vertices)
+        let normalsData = try container.decode(Data.self, forKey: .normals)
+        let facesData = try container.decode(Data.self, forKey: .faces)
+        
+        var verticesElements: [Float32] = []
+        verticesData.withUnsafeBytes { (bytes: UnsafePointer<Float32>) in
+            verticesElements = Array(UnsafeBufferPointer(start: bytes, count: verticesData.count / MemoryLayout<Float32>.size))
+        }
+        
+        self.vertices = []
+        self.vertices.append([])
+        for i in 0..<verticesCount {
+            self.vertices[0].append(simd_float3(x: verticesElements[i * 3], y: verticesElements[i * 3 + 1], z: verticesElements[i * 3 + 2]))
+        }
+        
+        var normalsElements: [Float32] = []
+        normalsData.withUnsafeBytes { (bytes: UnsafePointer<Float32>) in
+            normalsElements = Array(UnsafeBufferPointer(start: bytes, count: normalsData.count / MemoryLayout<Float32>.size))
+        }
+        
+        self.normals = []
+        self.normals.append([])
+        for i in 0..<normalsCount {
+            self.normals[0].append(simd_float3(x: normalsElements[i * 3], y: normalsElements[i * 3 + 1], z: normalsElements[i * 3 + 2]))
+        }
+        
+        var facesElements: [UInt32] = []
+        facesData.withUnsafeBytes { (bytes: UnsafePointer<UInt32>) in
+            facesElements = Array(UnsafeBufferPointer(start: bytes, count: facesData.count / MemoryLayout<UInt32>.size))
+        }
+        
+        self.faces = []
+        self.faces.append([])
+        for i in 0..<facesCount {
+            self.faces[0].append(simd_uint3(x: facesElements[i * 3], y: facesElements[i * 3 + 1], z: facesElements[i * 3 + 2]))
+        }
+        
+        print()
     }
 }
