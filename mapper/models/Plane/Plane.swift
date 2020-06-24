@@ -32,8 +32,8 @@ public final class Plane: Codable {
     }
     
     public func shouldBeTreatedAsWall() -> Bool {
-//        return self.alignment == .vertical
-        return self.classification == .wall
+        return self.alignment == .vertical
+//        return self.classification == .wall
     }
     
     enum CodingKeys: String, CodingKey {

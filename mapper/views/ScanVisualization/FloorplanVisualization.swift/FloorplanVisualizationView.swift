@@ -85,7 +85,7 @@ class FloorplanVisualizationView: UIView {
             let xCenteringOffset = yScale < xScale ? (self.bounds.width - scale * CGFloat(maxX - minX)) / 2.0 : 0.0
             let yCenteringOffset = xScale < yScale ? (self.bounds.height - scale * CGFloat(maxY - minY)) / 2.0 : 0.0
             
-            var origin = CGPoint(x: CGFloat(object.position.x - (object.extent.x / 2.0) - minX) * scale + xCenteringOffset + 32.0,
+            let origin = CGPoint(x: CGFloat(object.position.x - (object.extent.x / 2.0) - minX) * scale + xCenteringOffset + 32.0,
                                  y: CGFloat(object.position.z - (object.extent.z / 2.0) - minY) * scale + yCenteringOffset + 32.0)
             
             var extent = CGSize(width: CGFloat(object.extent.x) * scale,

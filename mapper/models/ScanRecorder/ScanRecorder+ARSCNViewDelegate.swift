@@ -11,7 +11,7 @@ extension ScanRecorder: ARSCNViewDelegate {
                 let wallNode = WallNode(for: plane)
                 wallNode.eulerAngles.x = -.pi/2
 
-//                node.addChildNode(wallNode)
+                node.addChildNode(wallNode)
             }
         }
         
