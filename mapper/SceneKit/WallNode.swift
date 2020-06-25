@@ -11,10 +11,6 @@ class WallNode: SCNNode {
         particleSystem.particleColor = UIColor.systemBlue
         particleSystem.particleColorVariation = SCNVector4(0.0, 1.0, 1.0, 1.1)
         particleSystem.particleSize = 0.005
-        particleSystem.emittingDirection = SCNVector3(0.0, 0.0, 0.2)
-        particleSystem.spreadingAngle = 45.0
-        particleSystem.particleAngle = 45.0
-        particleSystem.particleAngleVariation = 180.0
         particleSystem.particleVelocity = 0.1
         particleSystem.particleVelocityVariation = 0.2
         return particleSystem
@@ -60,23 +56,28 @@ class WallNode: SCNNode {
         let source = geometry.sources.first!
         var data = Data(repeating: 0, count: 12 * (source.data.count - source.dataOffset) / source.dataStride)
         
-        for i in stride(from: source.dataOffset, to: source.data.count / source.dataStride - 1, by: 1) {
+        for i in stride(from: source.dataOffset, to: source.data.count / source.dataStride, by: 1) {
             
             let sourceIndex = i * source.dataStride
-            var x = source.data[sourceIndex...sourceIndex+3].withUnsafeBytes { $0.load(as: Float.self) }
-            var y = source.data[sourceIndex+4...sourceIndex+7].withUnsafeBytes { $0.load(as: Float.self) }
-            var z = source.data[sourceIndex+8...sourceIndex+11].withUnsafeBytes { $0.load(as: Float.self) }
+            let x = source.data[sourceIndex...sourceIndex+3].withUnsafeBytes { $0.load(as: Float.self) }
+            let y = source.data[sourceIndex+4...sourceIndex+7].withUnsafeBytes { $0.load(as: Float.self) }
+            let z = source.data[sourceIndex+8...sourceIndex+11].withUnsafeBytes { $0.load(as: Float.self) }
             
-            let translation = simd_float3(planeAnchor.transform[3][0], planeAnchor.transform[3][1], planeAnchor.transform[3][2]) + simd_quatf(planeAnchor.transform).act(simd_float3(x, y, z))
+            var position = simd_float3(x, y, z)
+            position = simd_quatf(angle: .pi / 2, axis: simd_float3(1.0, 0.0, 0.0)).act(position)
             
-//            x += translation.x
-//            y += translation.y
-//            z += translation.z
+            let rotation = simd_quatf(planeAnchor.transform)
+            
+            position = rotation.act(position)
+            
+            let translation = simd_float3(planeAnchor.transform[3][0], planeAnchor.transform[3][1], planeAnchor.transform[3][2]) + rotation.act(planeAnchor.center)
+            
+            position += translation
             
             let destinationIndex = i * 12
-            data.replaceSubrange(destinationIndex...destinationIndex+3, with: Data(buffer: UnsafeBufferPointer(start: &x, count: 1)))
-            data.replaceSubrange(destinationIndex+4...destinationIndex+7, with: Data(buffer: UnsafeBufferPointer(start: &y, count: 1)))
-            data.replaceSubrange(destinationIndex+8...destinationIndex+11, with: Data(buffer: UnsafeBufferPointer(start: &z, count: 1)))
+            data.replaceSubrange(destinationIndex...destinationIndex+3, with: withUnsafeBytes(of: position.x) { Data($0) })
+            data.replaceSubrange(destinationIndex+4...destinationIndex+7, with: withUnsafeBytes(of: position.x) { Data($0) })
+            data.replaceSubrange(destinationIndex+8...destinationIndex+11, with: withUnsafeBytes(of: position.x) { Data($0) })
         }
         
         let newSource = SCNGeometrySource(data: data,
@@ -95,16 +96,24 @@ class WallNode: SCNNode {
         let planeGeometries: [(SCNGeometrySource, SCNGeometryElement)] = Array(self.planeGeometries.values)
         
         var combinedPlaneGeometrySourcesData = Data()
-        var combinedPlaneGeometryElementsData = Data()
+        
+        var planeGeometryElements: [SCNGeometryElement] = []
         
         var offset: UInt16 = 0
         for planeGeometry in planeGeometries {
             combinedPlaneGeometrySourcesData.append(planeGeometry.0.data)
             
-            for i in stride(from: 0, to: planeGeometry.1.data.count / 2 - 2, by: 2) {
+            var planeGeometryElementData = Data()
+            for i in stride(from: 0, to: planeGeometry.1.data.count, by: 2) {
                 var index: UInt16 = planeGeometry.1.data[i...i+1].withUnsafeBytes { $0.load(as: UInt16.self) } + offset
-                combinedPlaneGeometryElementsData.append(Data(buffer: UnsafeBufferPointer(start: &index, count: 1)))
+                planeGeometryElementData.append(withUnsafeBytes(of: index) { Data($0) })
             }
+            
+            let planeGeometryElement = SCNGeometryElement(data: planeGeometryElementData,
+                                                          primitiveType: .triangles,
+                                                          primitiveCount: planeGeometryElementData.count / 6,
+                                                          bytesPerIndex: 2)
+            planeGeometryElements.append(planeGeometryElement)
             
             offset = UInt16(combinedPlaneGeometrySourcesData.count / 12)
         }
@@ -118,15 +127,9 @@ class WallNode: SCNNode {
                                                             dataOffset: 0,
                                                             dataStride: 12)
         
-        let combinedPlaneGeometryElement = SCNGeometryElement(data: combinedPlaneGeometryElementsData,
-                                                              primitiveType: .triangles,
-                                                              primitiveCount: combinedPlaneGeometryElementsData.count / 6,
-                                                              bytesPerIndex: 2)
+
+        let combinedPlaneGeometry = SCNGeometry(sources: [combinedPlaneGeometrySource], elements: planeGeometryElements)
         
-        let combinedPlaneGeometry = SCNGeometry(sources: [combinedPlaneGeometrySource], elements: [combinedPlaneGeometryElement])
-        
-//        self.particleSystems?.first?.emitterShape = combinedPlaneGeometry
-        self.geometry = combinedPlaneGeometry
-        self.geometry?.firstMaterial?.isDoubleSided = true
+        self.particleSystems?.first?.emitterShape = combinedPlaneGeometry
     }
 }
