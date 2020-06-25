@@ -76,8 +76,8 @@ class WallNode: SCNNode {
             
             let destinationIndex = i * 12
             data.replaceSubrange(destinationIndex...destinationIndex+3, with: withUnsafeBytes(of: position.x) { Data($0) })
-            data.replaceSubrange(destinationIndex+4...destinationIndex+7, with: withUnsafeBytes(of: position.x) { Data($0) })
-            data.replaceSubrange(destinationIndex+8...destinationIndex+11, with: withUnsafeBytes(of: position.x) { Data($0) })
+            data.replaceSubrange(destinationIndex+4...destinationIndex+7, with: withUnsafeBytes(of: position.y) { Data($0) })
+            data.replaceSubrange(destinationIndex+8...destinationIndex+11, with: withUnsafeBytes(of: position.z) { Data($0) })
         }
         
         let newSource = SCNGeometrySource(data: data,
@@ -105,7 +105,7 @@ class WallNode: SCNNode {
             
             var planeGeometryElementData = Data()
             for i in stride(from: 0, to: planeGeometry.1.data.count, by: 2) {
-                var index: UInt16 = planeGeometry.1.data[i...i+1].withUnsafeBytes { $0.load(as: UInt16.self) } + offset
+                let index: UInt16 = planeGeometry.1.data[i...i+1].withUnsafeBytes { $0.load(as: UInt16.self) } + offset
                 planeGeometryElementData.append(withUnsafeBytes(of: index) { Data($0) })
             }
             
