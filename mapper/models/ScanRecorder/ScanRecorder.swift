@@ -10,6 +10,8 @@ class ScanRecorder: NSObject {
     weak var arViewProvider: ARViewProvider!
     weak var delegate: ScanRecorderDelegate!
     
+    public var wallNode: WallNode?
+    
     public func startSession() {
         let config = ARWorldTrackingConfiguration()
         config.planeDetection = [.horizontal, .vertical]
@@ -33,6 +35,9 @@ class ScanRecorder: NSObject {
     
     public func startRecording() {
         self.isRecording = true
+        
+        self.wallNode = WallNode()
+        self.arViewProvider.arView.scene.rootNode.addChildNode(self.wallNode!)
     }
     
     public func stopRecording() {

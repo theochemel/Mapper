@@ -8,10 +8,7 @@ extension ScanRecorder: ARSCNViewDelegate {
             let plane = self.scanState.addPlane(from: planeAnchor)
             
             if plane.shouldBeTreatedAsWall() {
-                let wallNode = WallNode(for: plane)
-                wallNode.eulerAngles.x = -.pi/2
-
-                node.addChildNode(wallNode)
+                self.wallNode?.addPlane(planeAnchor)
             }
         }
         
@@ -26,8 +23,9 @@ extension ScanRecorder: ARSCNViewDelegate {
             let plane = self.scanState.updatePlane(from: planeAnchor)
             
             if plane.shouldBeTreatedAsWall() {
-                guard let wallNode = node.childNodes.first(where: { $0 is WallNode }) as? WallNode else { return }
-                wallNode.update(from: plane)
+                self.wallNode?.updatePlane(planeAnchor)
+            } else {
+                self.wallNode?.removePlane(withID: plane.id)
             }
         }
         if let meshAnchor = anchor as? ARMeshAnchor {
@@ -40,6 +38,8 @@ extension ScanRecorder: ARSCNViewDelegate {
     func renderer(_ renderer: SCNSceneRenderer, didRemove node: SCNNode, for anchor: ARAnchor) {
         if let planeAnchor = anchor as? ARPlaneAnchor {
             self.scanState.removePlane(from: planeAnchor)
+            
+            self.wallNode?.removePlane(withID: planeAnchor.identifier)
         }
     }
 }
