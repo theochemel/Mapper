@@ -46,6 +46,7 @@ class ScanRecorder: NSObject {
     }
     
     public func startPlacement(for category: Object.Category) {
+        self.objectPlacementManager?.stop()
         switch category.placementCategory() {
         case .wallBox2D: self.objectPlacementManager = WallBox2DPlacementManager(for: category)
         case .floorBox2D: self.objectPlacementManager = FloorBox2DPlacementManager(for: category)
