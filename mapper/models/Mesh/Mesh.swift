@@ -158,7 +158,5 @@ public struct Mesh: Codable {
         for i in 0..<facesCount {
             self.faces[0].append(simd_uint3(x: facesElements[i * 3], y: facesElements[i * 3 + 1], z: facesElements[i * 3 + 2]))
         }
-        
-        print()
     }
 }

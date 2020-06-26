@@ -16,6 +16,10 @@ struct ScanVisualizationView: View {
         return self.scan.cleanedScan?.mesh != nil
     }
     
+    private func isPointCloudCompleted() -> Bool {
+        return self.scan.cleanedScan?.pointCloud != nil
+    }
+    
     var body: some View {
         TabView {
             Group {
@@ -24,30 +28,31 @@ struct ScanVisualizationView: View {
                 } else {
                     Text("2D Floorplan View")
                 }
-            }
-                .tabItem {
-                    Text("2D Floorplan")
-            }
+            } .tabItem { Text("2D Floorplan") }
+            
             Group {
                 if self.isReconstructionCompleted() {
                     ReconstructionVisualizationHostView(reconstruction: self.scan.cleanedScan!.reconstruction!)
                 } else {
                     Text("3D Reconstruction")
                 }
-            }
-                .tabItem {
-                    Text("3D Reconstruction")
-            }
+            } .tabItem { Text("3D Reconstruction") }
+            
             Group {
                 if self.isMeshCompleted() {
                         MeshVisualizationHostView(mesh: self.scan.cleanedScan!.mesh)
                 } else {
                     Text("3D Mesh")
                 }
-            }
-                .tabItem {
-                    Text("3D Mesh")
-            }
+            }.tabItem { Text("3D Mesh") }
+            
+            Group {
+                if self.isPointCloudCompleted() {
+                    PointCloudVisualizationHostView(pointCloud: self.scan.cleanedScan!.pointCloud!)
+                } else {
+                    Text("Point Cloud")
+                }
+            } .tabItem { Text("Point Cloud") }
         }
     }
 }

@@ -3,7 +3,7 @@ import ARKit
 
 public final class PointCloud: Codable {
     var points: [simd_float3]
-    var colors: [SIMD3<UInt8>]
+    var colors: [simd_float3]
     
     public init() {
         self.points = []
@@ -22,11 +22,15 @@ public final class PointCloud: Codable {
         try container.encode(self.points.count, forKey: .count)
         
         var pointsData = Data(count: self.points.count * 12)
-        var colorsData = Data(count: self.points.count * 3)
+        var colorsData = Data(count: self.points.count * 12)
         
         for i in 0..<self.points.count {
-            pointsData.replaceSubrange(i..<i+12, with: withUnsafePointer(to: self.points[i]) { Data(bytes: $0, count: 12) })
-            colorsData.replaceSubrange(i..<i+4, with: withUnsafePointer(to: self.colors[i]) { Data(bytes: $0, count: 12) })
+            pointsData.replaceSubrange(i*12..<i*12+4, with: withUnsafeBytes(of: self.points[i].x) { Data($0) })
+            pointsData.replaceSubrange(i*12+4..<i*12+8, with: withUnsafeBytes(of: self.points[i].y) { Data($0) })
+            pointsData.replaceSubrange(i*12+8..<i*12+12, with: withUnsafeBytes(of: self.points[i].z) { Data($0) })
+            colorsData.replaceSubrange(i*12..<i*12+4, with: withUnsafeBytes(of: self.colors[i].x) { Data($0) })
+            colorsData.replaceSubrange(i*12+4..<i*12+8, with: withUnsafeBytes(of: self.colors[i].y) { Data($0) })
+            colorsData.replaceSubrange(i*12+8..<i*12+12, with: withUnsafeBytes(of: self.colors[i].z) { Data($0) })
         }
         
         try container.encode(pointsData, forKey: .points)
@@ -46,12 +50,12 @@ public final class PointCloud: Codable {
         self.colors.reserveCapacity(count)
         
         for i in 0..<count {
-            self.points.append(simd_float3(x: withUnsafeBytes(of: pointsData[i*12..<(i*12)+4]) { $0.load(as: Float.self) },
-                                           y: withUnsafeBytes(of: pointsData[i*12+5..<(i*12)+8]) { $0.load(as: Float.self) },
-                                           z: withUnsafeBytes(of: pointsData[i*12+9..<(i*12)+12]) { $0.load(as: Float.self) }))
-            self.colors.append(SIMD3<UInt8>(x: withUnsafeBytes(of: colorsData[i*3]) { $0.load(as: UInt8.self) },
-                                            y: withUnsafeBytes(of: colorsData[i*3+1]) { $0.load(as: UInt8.self) },
-                                            z: withUnsafeBytes(of: colorsData[i*3+2]) { $0.load(as: UInt8.self) }))
+            self.points.append(simd_float3(x: pointsData[i * 12 ..< i * 12 + 4].withUnsafeBytes { $0.load(as: Float.self) },
+                                           y: pointsData[i * 12 + 4 ..< i * 12 + 8].withUnsafeBytes { $0.load(as: Float.self) },
+                                           z: pointsData[i * 12 + 8 ..< i * 12 + 12].withUnsafeBytes { $0.load(as: Float.self) }))
+            self.colors.append(simd_float3(x: colorsData[i * 12 ..< i * 12 + 4].withUnsafeBytes { $0.load(as: Float.self) },
+                                           y: colorsData[i * 12 + 4 ..< i * 12 + 8].withUnsafeBytes { $0.load(as: Float.self) },
+                                           z: colorsData[i * 12 + 8 ..< i * 12 + 12].withUnsafeBytes { $0.load(as: Float.self) }))
         }
     }
 }

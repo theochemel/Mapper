@@ -1,6 +1,6 @@
 import Foundation
 import CoreData
-import SceneKit.ModelIO
+import SceneKit
 
 public final class CleanedScan: Codable {
 
