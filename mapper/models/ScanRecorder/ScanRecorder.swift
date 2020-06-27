@@ -5,10 +5,20 @@ class ScanRecorder: NSObject {
     
     public var isRecording = false
     public var scanState = ScanState()
+    
     public var objectPlacementManager: ObjectPlacementManager? = nil
+    public var pointCloudManager: PointCloudManager? = nil
     
     weak var arViewProvider: ARViewProvider!
     weak var delegate: ScanRecorderDelegate!
+    
+    private var orientation: UIInterfaceOrientation!
+    private var viewportSize: CGSize!
+    
+    public init(orientation: UIInterfaceOrientation, viewportSize: CGSize) {
+        self.orientation = orientation
+        self.viewportSize = viewportSize
+    }
     
     public func startSession() {
         let config = ARWorldTrackingConfiguration()
@@ -17,6 +27,7 @@ class ScanRecorder: NSObject {
         config.environmentTexturing = .none
         config.isLightEstimationEnabled = true
         config.isAutoFocusEnabled = false
+        config.frameSemantics = [.sceneDepth]
         self.arViewProvider.arView.rendersMotionBlur = false
         self.arViewProvider.arView.automaticallyUpdatesLighting = true
         self.arViewProvider.arView.autoenablesDefaultLighting = false
@@ -32,6 +43,10 @@ class ScanRecorder: NSObject {
     }
     
     public func startRecording() {
+        self.pointCloudManager = PointCloudManager()
+        self.pointCloudManager?.orientation = orientation
+        self.pointCloudManager?.viewportSize = viewportSize
+        
         self.isRecording = true
     }
     
@@ -40,7 +55,7 @@ class ScanRecorder: NSObject {
         
         guard let currentFrame = self.arViewProvider.arView.session.currentFrame else { fatalError("Tried to stop recording, but couldn't get the latest frame.") }
         
-        let rawScan = RawScan(planes: scanState.planes, objects: scanState.objects, mesh: Mesh(from: currentFrame.anchors.filter { $0 is ARMeshAnchor } as! [ARMeshAnchor]), pointCloud: PointCloud())
+        let rawScan = RawScan(planes: scanState.planes, objects: scanState.objects, mesh: Mesh(from: currentFrame.anchors.filter { $0 is ARMeshAnchor } as! [ARMeshAnchor]), pointCloud: self.pointCloudManager?.pointCloud ?? PointCloud())
         
         self.delegate.didFinishScan(rawScan)
     }
@@ -59,5 +74,15 @@ class ScanRecorder: NSObject {
     public func stopPlacement() {
         self.objectPlacementManager?.stop()
         self.objectPlacementManager = nil
+    }
+    
+    public func orientationDidChange(_ orientation: UIInterfaceOrientation) {
+        self.orientation = orientation
+        self.pointCloudManager?.orientation = orientation
+    }
+    
+    public func viewportSizeDidChange(_ size: CGSize) {
+        self.viewportSize = size
+        self.pointCloudManager?.viewportSize = size
     }
 }

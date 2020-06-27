@@ -5,6 +5,8 @@ extension ScanRecorder: ARSessionDelegate {
     
     func session(_ session: ARSession, didUpdate frame: ARFrame) {
         guard self.isRecording else { return }
+        
+        self.pointCloudManager?.update(from: frame)
         self.scanState.update(from: frame)
         self.delegate.didUpdateScanState(self.scanState)
         

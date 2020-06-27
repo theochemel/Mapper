@@ -15,7 +15,8 @@ class ScanRecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.scanRecorder = ScanRecorder()
+        self.scanRecorder = ScanRecorder(orientation: UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? UIInterfaceOrientation.unknown,
+                                         viewportSize: .zero)
         self.scanRecorder.delegate = self
         
         self.scanRecorderView = ScanRecorderView()
@@ -64,6 +65,11 @@ class ScanRecorderViewController: UIViewController {
         self.parent?.navigationController?.setNavigationBarHidden(false, animated: animated)
         
         UIApplication.shared.isIdleTimerDisabled = false
+    }
+    
+    override func viewDidLayoutSubviews() {
+        self.scanRecorder.orientationDidChange(UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? UIInterfaceOrientation.unknown)
+        self.scanRecorder.viewportSizeDidChange(self.view.bounds.size)
     }
     
     @objc private func recordButtonDidTouchUpInside(_ sender: UIButton) {
