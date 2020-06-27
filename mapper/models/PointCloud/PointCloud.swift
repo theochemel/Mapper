@@ -4,6 +4,7 @@ import ARKit
 public final class PointCloud: Codable {
     var points: [simd_float3]
     var colors: [simd_float3]
+    var plyPath: URL?
     
     public init() {
         self.points = []
@@ -14,6 +15,56 @@ public final class PointCloud: Codable {
         case count
         case points
         case colors
+    }
+    
+    public func export() {
+        do {
+            let plyTempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString).appendingPathExtension(".ply")
+            var file = """
+            ply
+            format ascii 1.0
+            comment author: Theo C.
+            element vertex \(self.points.count)
+            property float x
+            property float y
+            property float z
+            property uchar red
+            property uchar green
+            property uchar blue
+            end_header\n
+            """
+            
+            for i in 0..<self.points.count {
+                var red = Int(self.colors[i].x * 255)
+                var green = Int(self.colors[i].y * 255)
+                var blue = Int(self.colors[i].z * 255)
+                
+                if red < 0 {
+                    red = 0
+                } else if red > 255 {
+                    red = 255
+                }
+                
+                if green < 0 {
+                    green = 0
+                } else if green > 255 {
+                    green = 255
+                }
+                
+                if blue < 0 {
+                    blue = 0
+                } else if blue > 255 {
+                    blue = 255
+                }
+                
+                file.append("\(self.points[i].x) \(self.points[i].y) \(self.points[i].z) \(red) \(green) \(blue)\n")
+            }
+            try file.write(to: plyTempPath, atomically: true, encoding: .utf8)
+            
+            self.plyPath = plyTempPath
+        } catch(let error) {
+            print(error)
+        }
     }
     
     public func encode(to encoder: Encoder) throws {

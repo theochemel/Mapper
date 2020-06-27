@@ -11,6 +11,13 @@ class PointCloudVisualizationViewController: UIViewController {
         
         self.pointCloudVisualizationView = PointCloudVisualizationView()
         self.view = self.pointCloudVisualizationView
+        
+        DispatchQueue.main.async {
+            self.pointCloud.export()
+        }
+            
+        let dragInteraction = UIDragInteraction(delegate: self)
+        self.pointCloudVisualizationView.addInteraction(dragInteraction)
     }
     
     override func viewWillAppear(_ animated: Bool) {
