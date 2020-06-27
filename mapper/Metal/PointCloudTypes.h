@@ -4,10 +4,10 @@
 #include <simd/simd.h>
 
 enum TextureIndices {
-//    kTextureY = 0,
-//    kTextureCbCr = 1,
-    kTextureDepth = 0,
-    kTextureConfidence = 1,
+    kTextureY = 0,
+    kTextureCbCr = 1,
+    kTextureDepth = 2,
+    kTextureConfidence = 3,
 };
 
 enum BufferIndices {

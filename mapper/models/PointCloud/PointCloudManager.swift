@@ -32,6 +32,8 @@ class PointCloudManager {
     private let pointUniformsBuffer: MetalBuffer<PointUniforms>
     private lazy var gridPointsBuffer = MetalBuffer<simd_float2>(device: self.device, array: self.gridPoints(), index: kGridPoints.rawValue, options: [])
     private lazy var textureCache = self.makeTextureCache()
+    private var capturedImageYTexture: CVMetalTexture?
+    private var capturedImageCbCrTexture: CVMetalTexture?
     private var depthTexture: CVMetalTexture?
     private var confidenceTexture: CVMetalTexture?
     
@@ -73,6 +75,8 @@ class PointCloudManager {
             
             self.depthTexture = self.makeTexture(fromPixelBuffer: depthMap, pixelFormat: .r32Float, planeIndex: 0)
             self.confidenceTexture = self.makeTexture(fromPixelBuffer: confidenceMap, pixelFormat: .r8Uint, planeIndex: 0)
+            self.capturedImageYTexture = self.makeTexture(fromPixelBuffer: frame.capturedImage, pixelFormat: .r8Unorm, planeIndex: 0)
+            self.capturedImageCbCrTexture = self.makeTexture(fromPixelBuffer: frame.capturedImage, pixelFormat: .rg8Unorm, planeIndex: 1)
             
             guard let commandBuffer = self.commandQueue.makeCommandBuffer() else { fatalError("Couldn't create command buffer.") }
             commandBuffer.label = "the droids you're looking for"
@@ -87,11 +91,13 @@ class PointCloudManager {
             commandEncoder.setBuffer(self.gridPointsBuffer, offset: 0)
             
             
-            var retainingTextures = [depthTexture, confidenceTexture]
+            var retainingTextures = [capturedImageYTexture, capturedImageCbCrTexture, depthTexture, confidenceTexture]
             commandBuffer.addCompletedHandler { buffer in
                 retainingTextures.removeAll()
             }
             
+            commandEncoder.setTexture(CVMetalTextureGetTexture(self.capturedImageYTexture!), index: Int(kTextureY.rawValue))
+            commandEncoder.setTexture(CVMetalTextureGetTexture(self.capturedImageCbCrTexture!), index: Int(kTextureCbCr.rawValue))
             commandEncoder.setTexture(CVMetalTextureGetTexture(self.depthTexture!), index: Int(kTextureDepth.rawValue))
             commandEncoder.setTexture(CVMetalTextureGetTexture(self.confidenceTexture!), index: Int(kTextureConfidence.rawValue))
             
