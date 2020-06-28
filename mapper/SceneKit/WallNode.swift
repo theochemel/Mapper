@@ -10,9 +10,13 @@ class WallNode: SCNNode {
         let particleSystem = SCNParticleSystem()
         particleSystem.particleColor = UIColor.systemBlue
         particleSystem.particleColorVariation = SCNVector4(0.0, 1.0, 1.0, 1.1)
-        particleSystem.particleSize = 0.005
-        particleSystem.particleVelocity = 0.1
-        particleSystem.particleVelocityVariation = 0.2
+        particleSystem.particleSize = 0.003
+        particleSystem.birthDirection = .surfaceNormal
+        particleSystem.particleAngularVelocity = 0.0
+        particleSystem.particleAngularVelocityVariation = 0.0
+        particleSystem.spreadingAngle = 0.0
+        particleSystem.particleVelocity = 0.02
+        particleSystem.particleVelocityVariation = 0.0
         return particleSystem
     }()
     
@@ -20,7 +24,7 @@ class WallNode: SCNNode {
         super.init()
         
         let particleSystem = WallNode.particleSystem
-        particleSystem.birthRate = 2000
+        particleSystem.birthRate = 500
         self.addParticleSystem(particleSystem)
     }
     
