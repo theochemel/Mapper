@@ -77,8 +77,6 @@ public class Scan: NSManagedObject {
                 }
                 
                 guard let data = data else { print("No data!"); return }
-
-                print(data)
                 
                 do {
                     self.cleanedScan = try JSONDecoder().decode(CleanedScan.self, from: data)

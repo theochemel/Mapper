@@ -69,6 +69,7 @@
 		E4DE6B15249557F800A491A6 /* ScanRecorder+ObjectPlacementManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE6B14249557F800A491A6 /* ScanRecorder+ObjectPlacementManagerDelegate.swift */; };
 		E4DE6B172495593E00A491A6 /* Object+PlacementCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE6B162495593E00A491A6 /* Object+PlacementCategory.swift */; };
 		E4DE6B1924955D5C00A491A6 /* ObjectSelectorCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE6B1824955D5C00A491A6 /* ObjectSelectorCategoryButton.swift */; };
+		E4DF046224A631DA00AF7218 /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF046124A631DA00AF7218 /* PointCloud.swift */; };
 		E4E7C5F7249C203B005CA33C /* ObjectPlacementManager+BoundAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E7C5F6249C203B005CA33C /* ObjectPlacementManager+BoundAxis.swift */; };
 		E4E7C5F9249C2048005CA33C /* WallBox2DPlacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E7C5F8249C2048005CA33C /* WallBox2DPlacementManager.swift */; };
 		E4E7C5FB249C2053005CA33C /* FloorBox2DPlacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E7C5FA249C2053005CA33C /* FloorBox2DPlacementManager.swift */; };
@@ -147,6 +148,7 @@
 		E4DE6B14249557F800A491A6 /* ScanRecorder+ObjectPlacementManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanRecorder+ObjectPlacementManagerDelegate.swift"; sourceTree = "<group>"; };
 		E4DE6B162495593E00A491A6 /* Object+PlacementCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+PlacementCategory.swift"; sourceTree = "<group>"; };
 		E4DE6B1824955D5C00A491A6 /* ObjectSelectorCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectorCategoryButton.swift; sourceTree = "<group>"; };
+		E4DF046124A631DA00AF7218 /* PointCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
 		E4E7C5F6249C203B005CA33C /* ObjectPlacementManager+BoundAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObjectPlacementManager+BoundAxis.swift"; sourceTree = "<group>"; };
 		E4E7C5F8249C2048005CA33C /* WallBox2DPlacementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallBox2DPlacementManager.swift; sourceTree = "<group>"; };
 		E4E7C5FA249C2053005CA33C /* FloorBox2DPlacementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorBox2DPlacementManager.swift; sourceTree = "<group>"; };
@@ -332,6 +334,7 @@
 		E46D26DE248981ED008B5C9A /* models */ = {
 			isa = PBXGroup;
 			children = (
+				E4DF046024A631C300AF7218 /* PointCloud */,
 				E419B7F8249BD1C0005DEF58 /* Point */,
 				E419B7F3249BC522005DEF58 /* Floorplan */,
 				E419B7E9249BC3D4005DEF58 /* Wall */,
@@ -403,6 +406,14 @@
 				E40CDA9C248EA19B00D9B710 /* CoachingViewController.swift */,
 			);
 			path = Coaching;
+			sourceTree = "<group>";
+		};
+		E4DF046024A631C300AF7218 /* PointCloud */ = {
+			isa = PBXGroup;
+			children = (
+				E4DF046124A631DA00AF7218 /* PointCloud.swift */,
+			);
+			path = PointCloud;
 			sourceTree = "<group>";
 		};
 		E4E9F64024952DE20022BAD3 /* Plane */ = {
@@ -556,6 +567,7 @@
 				E46CF9112497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift in Sources */,
 				E46CF9182497B80600838A6C /* MeshVisualizationView.swift in Sources */,
 				E46D26DD2489818D008B5C9A /* ScanListCellView.swift in Sources */,
+				E4DF046224A631DA00AF7218 /* PointCloud.swift in Sources */,
 				E4171954248FFE9400FEC62C /* ARViewProvider.swift in Sources */,
 				E4DE6B172495593E00A491A6 /* Object+PlacementCategory.swift in Sources */,
 				E417195A24900CE400FEC62C /* MinimapCameraIndicatorView.swift in Sources */,

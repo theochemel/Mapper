@@ -5,18 +5,18 @@ public final class RawScan: Codable  {
     
     var planes: [UUID: Plane]
     var objects: [UUID: Object]
-    var mesh: Mesh
+    var pointCloud: PointCloud
     
-    init(planes: [UUID: Plane], objects: [UUID: Object], mesh: Mesh) {
+    init(planes: [UUID: Plane], objects: [UUID: Object], pointCloud: PointCloud) {
         self.planes = planes
         self.objects = objects
-        self.mesh = mesh
+        self.pointCloud = pointCloud
     }
     
     enum CodingKeys: String, CodingKey {
         case planes
         case objects
-        case mesh
+        case pointCloud = "point_cloud"
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -29,8 +29,8 @@ public final class RawScan: Codable  {
         var stringKeyedObjects: [String: Object] = [:]
         _ = self.objects.map { stringKeyedObjects[$0.0.uuidString] = $0.1 }
         try container.encode(stringKeyedObjects, forKey: .objects)
-        
-        try container.encode(self.mesh, forKey: .mesh)
+                
+        try container.encode(self.pointCloud, forKey: .pointCloud)
     }
     
     public func encode(with coder: NSCoder) {
@@ -42,7 +42,7 @@ public final class RawScan: Codable  {
         _ = self.objects.map { stringKeyedObjects[$0.0.uuidString] = $0.1 }
         coder.encode(stringKeyedObjects, forKey: CodingKeys.objects.rawValue)
         
-        coder.encode(self.mesh, forKey: CodingKeys.mesh.rawValue)
+        coder.encode(self.pointCloud, forKey: CodingKeys.pointCloud.rawValue)
     }
     
     convenience public init(coder: NSCoder) {
@@ -56,8 +56,8 @@ public final class RawScan: Codable  {
             $0[$1.0] = $1.1
         }
         
-        let mesh = coder.decodeObject(forKey: CodingKeys.mesh.rawValue) as! Mesh
+        let pointCloud = coder.decodeObject(forKey: CodingKeys.pointCloud.rawValue) as! PointCloud
         
-        self.init(planes: planes, objects: objects, mesh: mesh)
+        self.init(planes: planes, objects: objects, pointCloud: pointCloud)
     }
 }
