@@ -42,7 +42,6 @@
 		E465C499249A98D300AA7B6D /* ReconstructionVisualizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C498249A98D200AA7B6D /* ReconstructionVisualizationViewController.swift */; };
 		E465C49B249A98DD00AA7B6D /* ReconstructionVisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E465C49A249A98DD00AA7B6D /* ReconstructionVisualizationView.swift */; };
 		E467D40C24918338005887AD /* MinimapWallsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E467D40B24918338005887AD /* MinimapWallsView.swift */; };
-		E46B61E3249151B900C4E7A8 /* SCNAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */; };
 		E46B61E52491576C00C4E7A8 /* WallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B61E42491576C00C4E7A8 /* WallNode.swift */; };
 		E46CF9112497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9102497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift */; };
 		E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C3248980CD008B5C9A /* AppDelegate.swift */; };
@@ -122,7 +121,6 @@
 		E465C498249A98D200AA7B6D /* ReconstructionVisualizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconstructionVisualizationViewController.swift; sourceTree = "<group>"; };
 		E465C49A249A98DD00AA7B6D /* ReconstructionVisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReconstructionVisualizationView.swift; sourceTree = "<group>"; };
 		E467D40B24918338005887AD /* MinimapWallsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinimapWallsView.swift; sourceTree = "<group>"; };
-		E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SCNAssets.scnassets; sourceTree = "<group>"; };
 		E46B61E42491576C00C4E7A8 /* WallNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallNode.swift; sourceTree = "<group>"; };
 		E46CF9102497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderViewControllerDelegate.swift; sourceTree = "<group>"; };
 		E46D26C0248980CD008B5C9A /* mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,7 +250,6 @@
 		E46B61E12491518400C4E7A8 /* SceneKit */ = {
 			isa = PBXGroup;
 			children = (
-				E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */,
 				E46B61E42491576C00C4E7A8 /* WallNode.swift */,
 				E4DE6B122495552300A491A6 /* OcclusionNode.swift */,
 				E43EB3BC24968E1E0081ADB2 /* CursorNode.swift */,
@@ -527,7 +524,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E46B61E3249151B900C4E7A8 /* SCNAssets.scnassets in Resources */,
 				E46D26D0248980CF008B5C9A /* LaunchScreen.storyboard in Resources */,
 				E46D26CD248980CF008B5C9A /* Preview Assets.xcassets in Resources */,
 				E46D26CA248980CF008B5C9A /* Assets.xcassets in Resources */,
