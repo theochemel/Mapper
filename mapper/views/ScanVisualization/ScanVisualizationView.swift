@@ -12,10 +12,6 @@ struct ScanVisualizationView: View {
         return self.scan.cleanedScan?.reconstruction != nil
     }
     
-    private func isMeshCompleted() -> Bool {
-        return self.scan.cleanedScan?.mesh != nil
-    }
-    
     private func isPointCloudCompleted() -> Bool {
         return self.scan.cleanedScan?.pointCloud != nil
     }
@@ -37,14 +33,6 @@ struct ScanVisualizationView: View {
                     Text("3D Reconstruction")
                 }
             } .tabItem { Text("3D Reconstruction") }
-            
-            Group {
-                if self.isMeshCompleted() {
-                        MeshVisualizationHostView(mesh: self.scan.cleanedScan!.mesh)
-                } else {
-                    Text("3D Mesh")
-                }
-            }.tabItem { Text("3D Mesh") }
             
             Group {
                 if self.isPointCloudCompleted() {

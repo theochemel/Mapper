@@ -53,9 +53,9 @@ class ScanRecorder: NSObject {
     public func stopRecording() {
         self.isRecording = false
         
-        guard let currentFrame = self.arViewProvider.arView.session.currentFrame else { fatalError("Tried to stop recording, but couldn't get the latest frame.") }
-        
-        let rawScan = RawScan(planes: scanState.planes, objects: scanState.objects, mesh: Mesh(from: currentFrame.anchors.filter { $0 is ARMeshAnchor } as! [ARMeshAnchor]), pointCloud: self.pointCloudManager?.pointCloud ?? PointCloud())
+        let rawScan = RawScan(planes: scanState.planes,
+                              objects: scanState.objects,
+                              pointCloud: self.pointCloudManager?.pointCloud ?? PointCloud())
         
         self.delegate.didFinishScan(rawScan)
     }
