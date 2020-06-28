@@ -45,9 +45,6 @@
 		E46B61E3249151B900C4E7A8 /* SCNAssets.scnassets in Resources */ = {isa = PBXBuildFile; fileRef = E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */; };
 		E46B61E52491576C00C4E7A8 /* WallNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46B61E42491576C00C4E7A8 /* WallNode.swift */; };
 		E46CF9112497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9102497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift */; };
-		E46CF9142497B24700838A6C /* MeshVisualizationHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9132497B24700838A6C /* MeshVisualizationHostView.swift */; };
-		E46CF9162497B62200838A6C /* MeshVisualizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9152497B62200838A6C /* MeshVisualizationViewController.swift */; };
-		E46CF9182497B80600838A6C /* MeshVisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46CF9172497B80600838A6C /* MeshVisualizationView.swift */; };
 		E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C3248980CD008B5C9A /* AppDelegate.swift */; };
 		E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E46D26C5248980CD008B5C9A /* SceneDelegate.swift */; };
 		E46D26CA248980CF008B5C9A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E46D26C9248980CF008B5C9A /* Assets.xcassets */; };
@@ -69,6 +66,14 @@
 		E4DE6B15249557F800A491A6 /* ScanRecorder+ObjectPlacementManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE6B14249557F800A491A6 /* ScanRecorder+ObjectPlacementManagerDelegate.swift */; };
 		E4DE6B172495593E00A491A6 /* Object+PlacementCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE6B162495593E00A491A6 /* Object+PlacementCategory.swift */; };
 		E4DE6B1924955D5C00A491A6 /* ObjectSelectorCategoryButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DE6B1824955D5C00A491A6 /* ObjectSelectorCategoryButton.swift */; };
+		E4DF046224A631DA00AF7218 /* PointCloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DF046124A631DA00AF7218 /* PointCloud.swift */; };
+		E4DFB25B24A8E48600828366 /* PointCloudManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DFB25A24A8E48600828366 /* PointCloudManager.swift */; };
+		E4DFB26524A8E54600828366 /* PointCloud.metal in Sources */ = {isa = PBXBuildFile; fileRef = E4DFB26224A8E54600828366 /* PointCloud.metal */; };
+		E4DFB26624A8E54600828366 /* MetalBuffer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DFB26424A8E54600828366 /* MetalBuffer.swift */; };
+		E4DFB26C24A8E5F100828366 /* PointCloudVisualizationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DFB26824A8E5F100828366 /* PointCloudVisualizationView.swift */; };
+		E4DFB26D24A8E5F100828366 /* PointCloudVisualizationViewController+UIDragInteractionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DFB26924A8E5F100828366 /* PointCloudVisualizationViewController+UIDragInteractionDelegate.swift */; };
+		E4DFB26E24A8E5F100828366 /* PointCloudVisualizationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DFB26A24A8E5F100828366 /* PointCloudVisualizationViewController.swift */; };
+		E4DFB26F24A8E5F100828366 /* PointCloudVisualizationHostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4DFB26B24A8E5F100828366 /* PointCloudVisualizationHostView.swift */; };
 		E4E7C5F7249C203B005CA33C /* ObjectPlacementManager+BoundAxis.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E7C5F6249C203B005CA33C /* ObjectPlacementManager+BoundAxis.swift */; };
 		E4E7C5F9249C2048005CA33C /* WallBox2DPlacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E7C5F8249C2048005CA33C /* WallBox2DPlacementManager.swift */; };
 		E4E7C5FB249C2053005CA33C /* FloorBox2DPlacementManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E7C5FA249C2053005CA33C /* FloorBox2DPlacementManager.swift */; };
@@ -77,7 +82,6 @@
 		E4E9F64424952E060022BAD3 /* Plane+Alignment.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9F64324952E060022BAD3 /* Plane+Alignment.swift */; };
 		E4E9F64624952E0E0022BAD3 /* Plane+Geometry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9F64524952E0E0022BAD3 /* Plane+Geometry.swift */; };
 		E4E9F64C2495307D0022BAD3 /* Object+Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9F64B2495307D0022BAD3 /* Object+Category.swift */; };
-		E4E9F64F2495332F0022BAD3 /* Mesh.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9F64E2495332F0022BAD3 /* Mesh.swift */; };
 		E4E9F65224953E060022BAD3 /* Scan.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9F65124953E060022BAD3 /* Scan.swift */; };
 		E4E9F654249540C70022BAD3 /* CleanedScan.swift in Sources */ = {isa = PBXBuildFile; fileRef = E4E9F653249540C70022BAD3 /* CleanedScan.swift */; };
 /* End PBXBuildFile section */
@@ -121,9 +125,6 @@
 		E46B61E2249151B900C4E7A8 /* SCNAssets.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = SCNAssets.scnassets; sourceTree = "<group>"; };
 		E46B61E42491576C00C4E7A8 /* WallNode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallNode.swift; sourceTree = "<group>"; };
 		E46CF9102497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScanRecorderViewControllerDelegate.swift; sourceTree = "<group>"; };
-		E46CF9132497B24700838A6C /* MeshVisualizationHostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshVisualizationHostView.swift; sourceTree = "<group>"; };
-		E46CF9152497B62200838A6C /* MeshVisualizationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshVisualizationViewController.swift; sourceTree = "<group>"; };
-		E46CF9172497B80600838A6C /* MeshVisualizationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeshVisualizationView.swift; sourceTree = "<group>"; };
 		E46D26C0248980CD008B5C9A /* mapper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = mapper.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E46D26C3248980CD008B5C9A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E46D26C5248980CD008B5C9A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -147,6 +148,16 @@
 		E4DE6B14249557F800A491A6 /* ScanRecorder+ObjectPlacementManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ScanRecorder+ObjectPlacementManagerDelegate.swift"; sourceTree = "<group>"; };
 		E4DE6B162495593E00A491A6 /* Object+PlacementCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+PlacementCategory.swift"; sourceTree = "<group>"; };
 		E4DE6B1824955D5C00A491A6 /* ObjectSelectorCategoryButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObjectSelectorCategoryButton.swift; sourceTree = "<group>"; };
+		E4DF046124A631DA00AF7218 /* PointCloud.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PointCloud.swift; sourceTree = "<group>"; };
+		E4DFB25A24A8E48600828366 /* PointCloudManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudManager.swift; sourceTree = "<group>"; };
+		E4DFB26124A8E54600828366 /* PointCloudTypes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PointCloudTypes.h; sourceTree = "<group>"; };
+		E4DFB26224A8E54600828366 /* PointCloud.metal */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.metal; path = PointCloud.metal; sourceTree = "<group>"; };
+		E4DFB26324A8E54600828366 /* mapper-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "mapper-Bridging-Header.h"; sourceTree = "<group>"; };
+		E4DFB26424A8E54600828366 /* MetalBuffer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalBuffer.swift; sourceTree = "<group>"; };
+		E4DFB26824A8E5F100828366 /* PointCloudVisualizationView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudVisualizationView.swift; sourceTree = "<group>"; };
+		E4DFB26924A8E5F100828366 /* PointCloudVisualizationViewController+UIDragInteractionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "PointCloudVisualizationViewController+UIDragInteractionDelegate.swift"; sourceTree = "<group>"; };
+		E4DFB26A24A8E5F100828366 /* PointCloudVisualizationViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudVisualizationViewController.swift; sourceTree = "<group>"; };
+		E4DFB26B24A8E5F100828366 /* PointCloudVisualizationHostView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointCloudVisualizationHostView.swift; sourceTree = "<group>"; };
 		E4E7C5F6249C203B005CA33C /* ObjectPlacementManager+BoundAxis.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ObjectPlacementManager+BoundAxis.swift"; sourceTree = "<group>"; };
 		E4E7C5F8249C2048005CA33C /* WallBox2DPlacementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WallBox2DPlacementManager.swift; sourceTree = "<group>"; };
 		E4E7C5FA249C2053005CA33C /* FloorBox2DPlacementManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FloorBox2DPlacementManager.swift; sourceTree = "<group>"; };
@@ -155,7 +166,6 @@
 		E4E9F64324952E060022BAD3 /* Plane+Alignment.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plane+Alignment.swift"; sourceTree = "<group>"; };
 		E4E9F64524952E0E0022BAD3 /* Plane+Geometry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Plane+Geometry.swift"; sourceTree = "<group>"; };
 		E4E9F64B2495307D0022BAD3 /* Object+Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Object+Category.swift"; sourceTree = "<group>"; };
-		E4E9F64E2495332F0022BAD3 /* Mesh.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mesh.swift; sourceTree = "<group>"; };
 		E4E9F65124953E060022BAD3 /* Scan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Scan.swift; sourceTree = "<group>"; };
 		E4E9F653249540C70022BAD3 /* CleanedScan.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CleanedScan.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -187,7 +197,7 @@
 			path = Wall;
 			sourceTree = "<group>";
 		};
-		E419B7EC249BC4E7005DEF58 /* FloorplanVisualization.swift */ = {
+		E419B7EC249BC4E7005DEF58 /* FloorplanVisualization */ = {
 			isa = PBXGroup;
 			children = (
 				E419B7ED249BC4FD005DEF58 /* FloorplanVisualizationHostView.swift */,
@@ -197,7 +207,7 @@
 				E420BAAD24A1220700C26ED0 /* FloorplanVisualizationScaleView.swift */,
 				E420BAAF24A1325D00C26ED0 /* FloorplanVisualizationBracketView.swift */,
 			);
-			path = FloorplanVisualization.swift;
+			path = FloorplanVisualization;
 			sourceTree = "<group>";
 		};
 		E419B7F3249BC522005DEF58 /* Floorplan */ = {
@@ -255,21 +265,10 @@
 			isa = PBXGroup;
 			children = (
 				E4D981B5248D8CC600F23C3A /* ScanVisualizationView.swift */,
-				E419B7EC249BC4E7005DEF58 /* FloorplanVisualization.swift */,
+				E419B7EC249BC4E7005DEF58 /* FloorplanVisualization */,
 				E465C495249A98A400AA7B6D /* 3DReconstructionVisualization */,
-				E46CF9192497B80900838A6C /* MeshVisualization */,
 			);
 			path = ScanVisualization;
-			sourceTree = "<group>";
-		};
-		E46CF9192497B80900838A6C /* MeshVisualization */ = {
-			isa = PBXGroup;
-			children = (
-				E46CF9132497B24700838A6C /* MeshVisualizationHostView.swift */,
-				E46CF9152497B62200838A6C /* MeshVisualizationViewController.swift */,
-				E46CF9172497B80600838A6C /* MeshVisualizationView.swift */,
-			);
-			path = MeshVisualization;
 			sourceTree = "<group>";
 		};
 		E46D26B7248980CC008B5C9A = {
@@ -292,6 +291,7 @@
 		E46D26C2248980CD008B5C9A /* mapper */ = {
 			isa = PBXGroup;
 			children = (
+				E4DFB26024A8E54600828366 /* Metal */,
 				E46B61E12491518400C4E7A8 /* SceneKit */,
 				E46D26DE248981ED008B5C9A /* models */,
 				E46D26D7248980EE008B5C9A /* views */,
@@ -317,6 +317,7 @@
 			isa = PBXGroup;
 			children = (
 				E46CF9122497B23200838A6C /* ScanVisualization */,
+				E4DFB26724A8E5F100828366 /* PointCloudVisualization */,
 				E4D981BB248D939200F23C3A /* ScanRecorder */,
 				E46D26DA24898135008B5C9A /* ContentView.swift */,
 				E46D26D8248980FD008B5C9A /* ScanListView.swift */,
@@ -332,6 +333,7 @@
 		E46D26DE248981ED008B5C9A /* models */ = {
 			isa = PBXGroup;
 			children = (
+				E4DF046024A631C300AF7218 /* PointCloud */,
 				E419B7F8249BD1C0005DEF58 /* Point */,
 				E419B7F3249BC522005DEF58 /* Floorplan */,
 				E419B7E9249BC3D4005DEF58 /* Wall */,
@@ -339,7 +341,6 @@
 				E4DE6B0D249554B400A491A6 /* ScanRecorder */,
 				E4E9F65024953DFB0022BAD3 /* Scan */,
 				E419B7E6249BB018005DEF58 /* Reconstruction */,
-				E4E9F64D249533270022BAD3 /* Mesh */,
 				E4E9F64A2495304A0022BAD3 /* Object */,
 				E4E9F64024952DE20022BAD3 /* Plane */,
 				E4171953248FFE9400FEC62C /* ARViewProvider.swift */,
@@ -405,6 +406,38 @@
 			path = Coaching;
 			sourceTree = "<group>";
 		};
+		E4DF046024A631C300AF7218 /* PointCloud */ = {
+			isa = PBXGroup;
+			children = (
+				E4DFB25A24A8E48600828366 /* PointCloudManager.swift */,
+				E4DF046124A631DA00AF7218 /* PointCloud.swift */,
+			);
+			path = PointCloud;
+			sourceTree = "<group>";
+		};
+		E4DFB26024A8E54600828366 /* Metal */ = {
+			isa = PBXGroup;
+			children = (
+				E4DFB26124A8E54600828366 /* PointCloudTypes.h */,
+				E4DFB26224A8E54600828366 /* PointCloud.metal */,
+				E4DFB26324A8E54600828366 /* mapper-Bridging-Header.h */,
+				E4DFB26424A8E54600828366 /* MetalBuffer.swift */,
+			);
+			path = Metal;
+			sourceTree = "<group>";
+		};
+		E4DFB26724A8E5F100828366 /* PointCloudVisualization */ = {
+			isa = PBXGroup;
+			children = (
+				E4DFB26824A8E5F100828366 /* PointCloudVisualizationView.swift */,
+				E4DFB26924A8E5F100828366 /* PointCloudVisualizationViewController+UIDragInteractionDelegate.swift */,
+				E4DFB26A24A8E5F100828366 /* PointCloudVisualizationViewController.swift */,
+				E4DFB26B24A8E5F100828366 /* PointCloudVisualizationHostView.swift */,
+			);
+			name = PointCloudVisualization;
+			path = ScanVisualization/PointCloudVisualization;
+			sourceTree = "<group>";
+		};
 		E4E9F64024952DE20022BAD3 /* Plane */ = {
 			isa = PBXGroup;
 			children = (
@@ -424,14 +457,6 @@
 				E4DE6B162495593E00A491A6 /* Object+PlacementCategory.swift */,
 			);
 			path = Object;
-			sourceTree = "<group>";
-		};
-		E4E9F64D249533270022BAD3 /* Mesh */ = {
-			isa = PBXGroup;
-			children = (
-				E4E9F64E2495332F0022BAD3 /* Mesh.swift */,
-			);
-			path = Mesh;
 			sourceTree = "<group>";
 		};
 		E4E9F65024953DFB0022BAD3 /* Scan */ = {
@@ -471,7 +496,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1140;
-				LastUpgradeCheck = 1140;
+				LastUpgradeCheck = 1200;
 				ORGANIZATIONNAME = "Theo Chemel";
 				TargetAttributes = {
 					E46D26BF248980CD008B5C9A = {
@@ -518,22 +543,24 @@
 			files = (
 				E419B7F7249BD1BB005DEF58 /* Point.swift in Sources */,
 				E40CDAA1248EAD4200D9B710 /* ObjectSelectorViewController.swift in Sources */,
-				E46CF9142497B24700838A6C /* MeshVisualizationHostView.swift in Sources */,
 				E417195C24903ECD00FEC62C /* Plane.swift in Sources */,
 				E4E9F65224953E060022BAD3 /* Scan.swift in Sources */,
 				E4036610249914CA007C0D99 /* UserDefaults.swift in Sources */,
 				E465C499249A98D300AA7B6D /* ReconstructionVisualizationViewController.swift in Sources */,
 				E4DE6B132495552300A491A6 /* OcclusionNode.swift in Sources */,
 				E4DE6B15249557F800A491A6 /* ScanRecorder+ObjectPlacementManagerDelegate.swift in Sources */,
+				E4DFB26E24A8E5F100828366 /* PointCloudVisualizationViewController.swift in Sources */,
 				E465C497249A98BE00AA7B6D /* ReconstructionVisualizationHostView.swift in Sources */,
 				E46D26C4248980CD008B5C9A /* AppDelegate.swift in Sources */,
 				E419B7F2249BC51B005DEF58 /* FloorplanVisualizationView.swift in Sources */,
 				E420BAB024A1325D00C26ED0 /* FloorplanVisualizationBracketView.swift in Sources */,
 				E419B7F5249BC52C005DEF58 /* Floorplan.swift in Sources */,
 				E41719562490085300FEC62C /* ScanState.swift in Sources */,
+				E4DFB25B24A8E48600828366 /* PointCloudManager.swift in Sources */,
 				E43EB3BF2496B0050081ADB2 /* ObjectPlacementManagerDelegate.swift in Sources */,
 				E4E7C5F7249C203B005CA33C /* ObjectPlacementManager+BoundAxis.swift in Sources */,
 				E43EB3C12496B1090081ADB2 /* ObjectNode.swift in Sources */,
+				E4DFB26C24A8E5F100828366 /* PointCloudVisualizationView.swift in Sources */,
 				E4D981BD248D93AA00F23C3A /* ScanRecorderViewController.swift in Sources */,
 				E417194E248FF73000FEC62C /* MinimapViewController.swift in Sources */,
 				E40CDAA5248ED7C300D9B710 /* Object.swift in Sources */,
@@ -543,7 +570,6 @@
 				E46D26EA2489986C008B5C9A /* ScanView.swift in Sources */,
 				E4E9F64424952E060022BAD3 /* Plane+Alignment.swift in Sources */,
 				E4171950248FF73A00FEC62C /* MinimapView.swift in Sources */,
-				E46CF9162497B62200838A6C /* MeshVisualizationViewController.swift in Sources */,
 				E40CDA9B248EA19100D9B710 /* CoachingView.swift in Sources */,
 				E40CDA9F248EAD3600D9B710 /* ObjectSelectorView.swift in Sources */,
 				E4E9F64C2495307D0022BAD3 /* Object+Category.swift in Sources */,
@@ -552,32 +578,35 @@
 				E467D40C24918338005887AD /* MinimapWallsView.swift in Sources */,
 				E4D981B8248D8D0800F23C3A /* StartScanView.swift in Sources */,
 				E4D981BA248D931100F23C3A /* ScanRecorderHostView.swift in Sources */,
+				E4DFB26624A8E54600828366 /* MetalBuffer.swift in Sources */,
 				E4DE6B11249554EB00A491A6 /* ScanRecorder+ARSCNViewDelegate.swift in Sources */,
 				E46CF9112497AB2700838A6C /* ScanRecorderViewControllerDelegate.swift in Sources */,
-				E46CF9182497B80600838A6C /* MeshVisualizationView.swift in Sources */,
 				E46D26DD2489818D008B5C9A /* ScanListCellView.swift in Sources */,
+				E4DF046224A631DA00AF7218 /* PointCloud.swift in Sources */,
 				E4171954248FFE9400FEC62C /* ARViewProvider.swift in Sources */,
 				E4DE6B172495593E00A491A6 /* Object+PlacementCategory.swift in Sources */,
 				E417195A24900CE400FEC62C /* MinimapCameraIndicatorView.swift in Sources */,
 				E46252E02489B7B70078DDD7 /* SettingsView.swift in Sources */,
 				E420BAB224A1547B00C26ED0 /* ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift in Sources */,
+				E4DFB26D24A8E5F100828366 /* PointCloudVisualizationViewController+UIDragInteractionDelegate.swift in Sources */,
 				E46D26C6248980CD008B5C9A /* SceneDelegate.swift in Sources */,
 				E4DE6B1924955D5C00A491A6 /* ObjectSelectorCategoryButton.swift in Sources */,
 				E46D26DB24898135008B5C9A /* ContentView.swift in Sources */,
 				E4E9F64224952DFC0022BAD3 /* Plane+Classification.swift in Sources */,
 				E419B7E8249BB025005DEF58 /* Reconstruction.swift in Sources */,
 				E417195824900A0D00FEC62C /* ScanRecorderDelegate.swift in Sources */,
+				E4DFB26524A8E54600828366 /* PointCloud.metal in Sources */,
 				E419B7EB249BC3E1005DEF58 /* Wall.swift in Sources */,
 				E431D0E024A11FA200F654DC /* FloorplanVisualizationObjectView.swift in Sources */,
 				E4D981B6248D8CC600F23C3A /* ScanVisualizationView.swift in Sources */,
 				E4E9F64624952E0E0022BAD3 /* Plane+Geometry.swift in Sources */,
 				E419B7F0249BC50E005DEF58 /* FloorplanVisualizationViewController.swift in Sources */,
 				E4DE6B0F249554CF00A491A6 /* ScanRecorder+ARSessionDelegate.swift in Sources */,
+				E4DFB26F24A8E5F100828366 /* PointCloudVisualizationHostView.swift in Sources */,
 				E419B7EE249BC4FD005DEF58 /* FloorplanVisualizationHostView.swift in Sources */,
 				E46D26E6248984E6008B5C9A /* MapperModels.xcdatamodeld in Sources */,
 				E4E9F654249540C70022BAD3 /* CleanedScan.swift in Sources */,
 				E43EB3BD24968E1E0081ADB2 /* CursorNode.swift in Sources */,
-				E4E9F64F2495332F0022BAD3 /* Mesh.swift in Sources */,
 				E4E9F63F249508CF0022BAD3 /* RawScan.swift in Sources */,
 				E40CDA99248DE2D400D9B710 /* ScanRecorderView.swift in Sources */,
 				E46D26D9248980FD008B5C9A /* ScanListView.swift in Sources */,
@@ -628,6 +657,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -658,6 +688,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "mapper/Metal/mapper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
@@ -688,6 +719,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -711,6 +743,7 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "mapper/Metal/mapper-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -725,6 +758,7 @@
 				DEVELOPMENT_TEAM = VH7MSB4ML9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = mapper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -745,6 +779,7 @@
 				DEVELOPMENT_TEAM = VH7MSB4ML9;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = mapper/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
