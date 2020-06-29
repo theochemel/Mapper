@@ -1,15 +1,78 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17162" systemVersion="19F101" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Floorplan" representedClassName="Floorplan" syncable="YES">
+        <relationship name="objects" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="MapperObject" inverseName="floorplan" inverseEntity="MapperObject"/>
+        <relationship name="points" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Point" inverseName="floorplan" inverseEntity="Point"/>
+        <relationship name="scan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Scan" inverseName="floorplan" inverseEntity="Scan"/>
+        <relationship name="walls" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Wall" inverseName="floorplan" inverseEntity="Wall"/>
+    </entity>
+    <entity name="MapperObject" representedClassName="MapperObject" syncable="YES">
+        <attribute name="categoryString" optional="YES" attributeType="String"/>
+        <attribute name="extentData" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="positionData" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <relationship name="floorplan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Floorplan" inverseName="objects" inverseEntity="Floorplan"/>
+        <relationship name="rawFloorplan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RawFloorplan" inverseName="objects" inverseEntity="RawFloorplan"/>
+    </entity>
+    <entity name="Plane" representedClassName="Plane" syncable="YES">
+        <attribute name="alignmentString" optional="YES" attributeType="String"/>
+        <attribute name="classificationString" optional="YES" attributeType="String"/>
+        <attribute name="extentData" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="positionData" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <attribute name="rotationData" optional="YES" attributeType="Binary" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <relationship name="rawFloorplan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RawFloorplan" inverseName="planes" inverseEntity="RawFloorplan"/>
+    </entity>
+    <entity name="Point" representedClassName="Point" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="position" optional="YES" attributeType="Transformable" valueTransformerName="NSSecureUnarchiveFromData"/>
+        <relationship name="floorplan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Floorplan" inverseName="points" inverseEntity="Floorplan"/>
+        <relationship name="wallEnd" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Wall"/>
+        <relationship name="wallStart" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Wall"/>
+    </entity>
+    <entity name="PointCloud" representedClassName="PointCloud" syncable="YES">
+        <attribute name="colorsData" optional="YES" attributeType="Binary"/>
+        <attribute name="plyFilePath" optional="YES" attributeType="URI"/>
+        <attribute name="pointCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="pointsData" optional="YES" attributeType="Binary"/>
+        <relationship name="scan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Scan" inverseName="pointCloud" inverseEntity="Scan"/>
+    </entity>
+    <entity name="RawFloorplan" representedClassName="RawFloorplan" syncable="YES">
+        <relationship name="objects" toMany="YES" deletionRule="Nullify" destinationEntity="MapperObject" inverseName="rawFloorplan" inverseEntity="MapperObject"/>
+        <relationship name="planes" toMany="YES" deletionRule="Nullify" destinationEntity="Plane" inverseName="rawFloorplan" inverseEntity="Plane"/>
+        <relationship name="scan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Scan" inverseName="rawFloorplan" inverseEntity="Scan"/>
+    </entity>
+    <entity name="Reconstruction" representedClassName="Reconstruction" syncable="YES">
+        <attribute name="ifcFilePath" optional="YES" attributeType="URI"/>
+        <attribute name="objFilePath" optional="YES" attributeType="URI"/>
+        <attribute name="objMtlFilePath" optional="YES" attributeType="URI"/>
+        <relationship name="scan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Scan" inverseName="reconstruction" inverseEntity="Scan"/>
+    </entity>
     <entity name="Scan" representedClassName="Scan" syncable="YES">
         <attribute name="address" attributeType="String"/>
-        <attribute name="cleanedScanData" optional="YES" attributeType="Binary"/>
         <attribute name="dateCreated" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="floor" attributeType="String"/>
-        <attribute name="isScanCompleted" attributeType="Boolean" defaultValueString="NO" usesScalarValueType="YES"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="name" attributeType="String"/>
-        <attribute name="rawScanData" optional="YES" attributeType="Binary"/>
+        <relationship name="floorplan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Floorplan" inverseName="scan" inverseEntity="Floorplan"/>
+        <relationship name="pointCloud" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="PointCloud" inverseName="scan" inverseEntity="PointCloud"/>
+        <relationship name="rawFloorplan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="RawFloorplan" inverseName="scan" inverseEntity="RawFloorplan"/>
+        <relationship name="reconstruction" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Reconstruction" inverseName="scan" inverseEntity="Reconstruction"/>
+    </entity>
+    <entity name="Wall" representedClassName="Wall" syncable="YES">
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="points" optional="YES" attributeType="Transformable" customClassName="[UUID]"/>
+        <relationship name="floorplan" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Floorplan" inverseName="walls" inverseEntity="Floorplan"/>
     </entity>
     <elements>
-        <element name="Scan" positionX="-54" positionY="-9" width="128" height="148"/>
+        <element name="Floorplan" positionX="354.76171875" positionY="-419.0234375" width="128" height="103"/>
+        <element name="MapperObject" positionX="-205.17578125" positionY="182.66015625" width="128" height="133"/>
+        <element name="Plane" positionX="-330.9765625" positionY="98.93359375" width="128" height="148"/>
+        <element name="Point" positionX="427.2265625" positionY="-106.40234375" width="128" height="118"/>
+        <element name="PointCloud" positionX="-303.4375" positionY="-413.5" width="128" height="118"/>
+        <element name="RawFloorplan" positionX="-187.41015625" positionY="-149.0703125" width="128" height="88"/>
+        <element name="Reconstruction" positionX="73.21484375" positionY="-434.91015625" width="128" height="103"/>
+        <element name="Scan" positionX="14.5390625" positionY="-685.94921875" width="128" height="178"/>
+        <element name="Wall" positionX="228.41796875" positionY="-177.2109375" width="128" height="88"/>
     </elements>
 </model>

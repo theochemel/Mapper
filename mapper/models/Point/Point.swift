@@ -1,12 +1,10 @@
 import Foundation
 import ARKit
+import CoreData
 
-public final class Point: Codable {
-    var id: UUID
-    var position: simd_float2
+@objc(Point)
+public final class Point: NSManagedObject {
     
-    enum CodingKeys: String, CodingKey {
-        case id
-        case position = "pos"
-    }
+    @NSManaged public var id: UUID
+    @NSManaged public var position: simd_float2
 }

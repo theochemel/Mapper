@@ -19,9 +19,9 @@ struct ScanView: View {
                     HStack {
                         Text("Created on \(self.dateCreatedString)")
                         Spacer()
-                        if self.scan.isScanCompleted {
+                        if self.scan.isCompleted {
                             Button(action: {
-                                self.scan.refreshCleanedScan(backendURL: self.userDefaultsManager.backendURL)
+
                             }) {
                                 Text("Reload")
                             }
@@ -31,7 +31,7 @@ struct ScanView: View {
                     Divider()
                 }.padding([.top, .leading, .trailing], 24.0)
                 Spacer()
-                if self.scan.isScanCompleted {
+                if self.scan.isCompleted {
                     ScanVisualizationView(scan: self.scan)
                 } else {
                     StartScanView(scan: self.scan)

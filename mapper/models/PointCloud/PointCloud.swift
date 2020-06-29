@@ -1,112 +1,69 @@
 import Foundation
 import ARKit
+import CoreData
 
-public final class PointCloud: Codable {
-    var points: [simd_float3]
-    var colors: [simd_float3]
-    var plyPath: URL?
+@objc(PointCloud)
+public final class PointCloud: NSManagedObject {
     
-    public init() {
-        self.points = []
-        self.colors = []
-    }
+    @NSManaged var pointCount: Int
+    @NSManaged var pointsData: Data
+    @NSManaged var colorsData: Data
+    @NSManaged var plyFilePath: URL?
     
-    enum CodingKeys: String, CodingKey {
-        case count
-        case points
-        case colors
-    }
-    
-    public func export() {
-        do {
-            let plyTempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString).appendingPathExtension(".ply")
-            var file = """
-            ply
-            format ascii 1.0
-            comment author: Theo C.
-            element vertex \(self.points.count)
-            property float x
-            property float y
-            property float z
-            property uchar red
-            property uchar green
-            property uchar blue
-            end_header\n
-            """
+    public var points: [simd_float3] {
+        get {
+            var p: [simd_float3] = []
+            guard self.pointCount > 0 else { return p }
+
+            p.reserveCapacity(self.pointCount)
             
-            for i in 0..<self.points.count {
-                var red = Int(self.colors[i].x * 255)
-                var green = Int(self.colors[i].y * 255)
-                var blue = Int(self.colors[i].z * 255)
-                
-                if red < 0 {
-                    red = 0
-                } else if red > 255 {
-                    red = 255
-                }
-                
-                if green < 0 {
-                    green = 0
-                } else if green > 255 {
-                    green = 255
-                }
-                
-                if blue < 0 {
-                    blue = 0
-                } else if blue > 255 {
-                    blue = 255
-                }
-                
-                file.append("\(self.points[i].x) \(self.points[i].y) \(self.points[i].z) \(red) \(green) \(blue)\n")
+            for i in 0..<self.pointCount {
+                p.append(simd_float3(x: self.pointsData[i * 12 ..< i * 12 + 4].withUnsafeBytes { $0.load(as: Float.self) },
+                                          y: self.pointsData[i * 12 + 4 ..< i * 12 + 8].withUnsafeBytes { $0.load(as: Float.self) },
+                                          z: self.pointsData[i * 12 + 8 ..< i * 12 + 12].withUnsafeBytes { $0.load(as: Float.self) }))
             }
-            try file.write(to: plyTempPath, atomically: true, encoding: .utf8)
             
-            self.plyPath = plyTempPath
-        } catch(let error) {
-            print(error)
+            return p
         }
     }
     
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        
-        try container.encode(self.points.count, forKey: .count)
-        
-        var pointsData = Data(count: self.points.count * 12)
-        var colorsData = Data(count: self.points.count * 12)
-        
-        for i in 0..<self.points.count {
-            pointsData.replaceSubrange(i*12..<i*12+4, with: withUnsafeBytes(of: self.points[i].x) { Data($0) })
-            pointsData.replaceSubrange(i*12+4..<i*12+8, with: withUnsafeBytes(of: self.points[i].y) { Data($0) })
-            pointsData.replaceSubrange(i*12+8..<i*12+12, with: withUnsafeBytes(of: self.points[i].z) { Data($0) })
-            colorsData.replaceSubrange(i*12..<i*12+4, with: withUnsafeBytes(of: self.colors[i].x) { Data($0) })
-            colorsData.replaceSubrange(i*12+4..<i*12+8, with: withUnsafeBytes(of: self.colors[i].y) { Data($0) })
-            colorsData.replaceSubrange(i*12+8..<i*12+12, with: withUnsafeBytes(of: self.colors[i].z) { Data($0) })
+    public var colors: [simd_uchar3] {
+        get {
+            var c: [simd_uchar3] = []
+
+            guard self.pointCount > 0 else { return c }
+
+            c.reserveCapacity(self.pointCount)
+
+            for i in 0..<self.pointCount {
+                c.append(simd_uchar3(x: self.colorsData[i * 3],
+                                          y: self.colorsData[i * 3 + 1],
+                                          z: self.colorsData[i * 3 + 2]))
+            }
+            
+            return c
         }
-        
-        try container.encode(pointsData, forKey: .points)
-        try container.encode(colorsData, forKey: .colors)
     }
     
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        
-        let count = try container.decode(Int.self, forKey: .count)
-        let pointsData = try container.decode(Data.self, forKey: .points)
-        let colorsData = try container.decode(Data.self, forKey: .colors)
-        
-        self.points = []
-        self.points.reserveCapacity(count)
-        self.colors = []
-        self.colors.reserveCapacity(count)
-        
-        for i in 0..<count {
-            self.points.append(simd_float3(x: pointsData[i * 12 ..< i * 12 + 4].withUnsafeBytes { $0.load(as: Float.self) },
-                                           y: pointsData[i * 12 + 4 ..< i * 12 + 8].withUnsafeBytes { $0.load(as: Float.self) },
-                                           z: pointsData[i * 12 + 8 ..< i * 12 + 12].withUnsafeBytes { $0.load(as: Float.self) }))
-            self.colors.append(simd_float3(x: colorsData[i * 12 ..< i * 12 + 4].withUnsafeBytes { $0.load(as: Float.self) },
-                                           y: colorsData[i * 12 + 4 ..< i * 12 + 8].withUnsafeBytes { $0.load(as: Float.self) },
-                                           z: colorsData[i * 12 + 8 ..< i * 12 + 12].withUnsafeBytes { $0.load(as: Float.self) }))
+    public func addPoints(_ points: [simd_float3], colors: [simd_float3]) {
+        guard points.count == colors.count else { fatalError("Mismatch between point count and color count.") }
+                
+        for (point, color) in zip(points, colors) {
+            self.addPoint(point, color: color)
         }
+    }
+    
+    public func addPoint(_ point: simd_float3, color: simd_float3) {
+        self.pointCount += 1
+        
+        self.pointsData.append(withUnsafeBytes(of: point.x) { Data($0) })
+        self.pointsData.append(withUnsafeBytes(of: point.y) { Data($0) })
+        self.pointsData.append(withUnsafeBytes(of: point.z) { Data($0) })
+        
+        let red = Int(color.x * 255.0)
+        let green = Int(color.y * 255.0)
+        let blue = Int(color.z * 255.0)
+        
+        self.colorsData.append(contentsOf: [UInt8(clamping: red), UInt8(clamping: green), UInt8(clamping: blue)])
     }
 }

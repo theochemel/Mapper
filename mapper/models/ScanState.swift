@@ -1,14 +1,17 @@
 import Foundation
 import RealityKit
 import ARKit
+import CoreData
 
 class ScanState {
+    public var context: NSManagedObjectContext!
     public var cameraPosition: vector_float3
     public var cameraOrientation: vector_float3
     public var planes: [UUID: Plane]
     public var objects: [UUID: Object]
     
-    public init() {
+    public init(context: NSManagedObjectContext) {
+        self.context = context
         self.cameraPosition = vector_float3(0.0, 0.0, 0.0)
         self.cameraOrientation = vector_float3(0.0, 0.0, 0.0)
         self.planes = [:]
@@ -29,7 +32,9 @@ class ScanState {
     }
     
     func addPlane(from anchor: ARPlaneAnchor) -> Plane {
-        self.planes[anchor.identifier] = Plane(anchor: anchor)
+        let plane = Plane(context: self.context)
+        plane.update(from: anchor)
+        self.planes[anchor.identifier] = plane
         return self.planes[anchor.identifier]!
     }
     

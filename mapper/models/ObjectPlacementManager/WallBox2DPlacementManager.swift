@@ -27,7 +27,10 @@ class WallBox2DPlacementManager: ObjectPlacementManager {
                 let center = (self.points[0] + self.points[1]) / 2.0
                 let extent = abs(self.points[0] - self.points[1])
                 
-                let object = Object(planeID: self.planeID, position: center, extent: extent, category: self.category)
+                let object = Object(context: self.context)
+                object.category = self.category
+                object.position = center
+                object.extent = extent
                 self.delegate?.didAddObject(object)
                 let objectNode = ObjectNode(for: object)
                 self.arViewProvider.arView.scene.rootNode.addChildNode(objectNode)

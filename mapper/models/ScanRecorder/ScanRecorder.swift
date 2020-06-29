@@ -1,13 +1,16 @@
 import Foundation
 import ARKit
+import CoreData
 
 class ScanRecorder: NSObject {
     
+    public var context: NSManagedObjectContext!
+        
     public var isRecording = false
-    public var scanState = ScanState()
-    
-    public var objectPlacementManager: ObjectPlacementManager? = nil
-    public var pointCloudManager: PointCloudManager? = nil
+
+    public var scanState: ScanState!
+    public var objectPlacementManager: ObjectPlacementManager?
+    public var pointCloudManager: PointCloudManager?
     
     weak var arViewProvider: ARViewProvider!
     weak var delegate: ScanRecorderDelegate!
@@ -17,7 +20,9 @@ class ScanRecorder: NSObject {
     private var orientation: UIInterfaceOrientation!
     private var viewportSize: CGSize!
     
-    public init(orientation: UIInterfaceOrientation, viewportSize: CGSize) {
+    public init(context: NSManagedObjectContext, orientation: UIInterfaceOrientation, viewportSize: CGSize) {
+        self.context = context
+        self.scanState = ScanState(context: context)
         self.orientation = orientation
         self.viewportSize = viewportSize
     }
@@ -45,7 +50,7 @@ class ScanRecorder: NSObject {
     }
     
     public func startRecording() {
-        self.pointCloudManager = PointCloudManager()
+        self.pointCloudManager = PointCloudManager(context: context)
         self.pointCloudManager?.orientation = orientation
         self.pointCloudManager?.viewportSize = viewportSize
         
@@ -58,18 +63,17 @@ class ScanRecorder: NSObject {
     public func stopRecording() {
         self.isRecording = false
         
-        let rawScan = RawScan(planes: scanState.planes,
-                              objects: scanState.objects,
-                              pointCloud: self.pointCloudManager?.pointCloud ?? PointCloud())
-        
-        self.delegate.didFinishScan(rawScan)
+        let rawFloorplan = RawFloorplan(context: self.context)
+        rawFloorplan.planes = Set(self.scanState.planes.values)
+        rawFloorplan.objects = Set(self.scanState.objects.values)
+        self.delegate.didFinishScanning(rawFloorplan: rawFloorplan, pointCloud: self.pointCloudManager?.pointCloud)
     }
     
     public func startPlacement(for category: Object.Category) {
         self.objectPlacementManager?.stop()
         switch category.placementCategory() {
-        case .wallBox2D: self.objectPlacementManager = WallBox2DPlacementManager(for: category)
-        case .floorBox2D: self.objectPlacementManager = FloorBox2DPlacementManager(for: category)
+        case .wallBox2D: self.objectPlacementManager = WallBox2DPlacementManager(for: category, context: self.context)
+        case .floorBox2D: self.objectPlacementManager = FloorBox2DPlacementManager(for: category, context: self.context)
         }
         self.objectPlacementManager?.arViewProvider = self.arViewProvider
         self.objectPlacementManager?.delegate = self

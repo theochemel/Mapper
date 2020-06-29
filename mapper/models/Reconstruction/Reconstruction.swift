@@ -1,32 +1,13 @@
 import Foundation
 import SceneKit
 import ModelIO
+import CoreData
 
-public final class Reconstruction: Codable {
+@objc(Reconstruction)
+public final class Reconstruction: NSManagedObject {
     
-    var ifcData: String
-    var objData: String
-    var mtlData: String
+    @NSManaged public var ifcFilePath: URL
+    @NSManaged public var objFilePath: URL
+    @NSManaged public var objMtlFilePath: URL
     
-    var asset: MDLAsset? {
-        do {
-            let objTempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent(UUID().uuidString).appendingPathExtension("obj")
-            try self.objData.write(to: objTempPath, atomically: true, encoding: .utf8)
-            
-            let mtlTempPath = URL(fileURLWithPath: NSTemporaryDirectory()).appendingPathComponent("scan").appendingPathExtension("mtl")
-            try self.objData.write(to: mtlTempPath, atomically: true, encoding: .utf8)
-            
-            let asset = MDLAsset(url: objTempPath)
-            return asset
-        } catch(let error) {
-            print("Error creating reconstruction node: ", error)
-            return nil
-        }
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case ifcData = "ifc_data"
-        case objData = "obj_data"
-        case mtlData = "mtl_data"
-    }
 }

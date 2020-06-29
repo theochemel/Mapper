@@ -1,7 +1,11 @@
 import Foundation
 import ARKit
+import CoreData
 
 class ObjectPlacementManager {
+    
+    public var context: NSManagedObjectContext!
+    
     var category: Object.Category
     
     weak var arViewProvider: ARViewProvider!
@@ -10,7 +14,8 @@ class ObjectPlacementManager {
     var cursor: CursorNode?
     var boundAxis: BoundAxis?
     
-    init(for category: Object.Category) {
+    init(for category: Object.Category, context: NSManagedObjectContext) {
+        self.context = context
         self.category = category
     }
     

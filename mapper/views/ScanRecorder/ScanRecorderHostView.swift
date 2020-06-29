@@ -9,6 +9,7 @@ struct ScanRecorderHostView: UIViewControllerRepresentable {
     
     func makeUIViewController(context: UIViewControllerRepresentableContext<ScanRecorderHostView>) -> ScanRecorderViewController {
         let scanRecorderViewController = ScanRecorderViewController()
+        scanRecorderViewController.context = self.managedObjectContext
         scanRecorderViewController.navigationController?.navigationBar.isHidden = true
         scanRecorderViewController.delegate = context.coordinator
         return scanRecorderViewController
@@ -29,10 +30,10 @@ struct ScanRecorderHostView: UIViewControllerRepresentable {
             self.parent = parent
         }
         
-        func didFinishScan(_ rawScan: RawScan) {
-            self.parent.scan.didFinishRawScan(rawScan, backendURL: self.parent.userDefaultsManager.backendURL)
-            
+        func didFinishScanning(rawFloorplan: RawFloorplan, pointCloud: PointCloud?) {
             do {
+                self.parent.scan.rawFloorplan = rawFloorplan
+                self.parent.scan.pointCloud = pointCloud
                 try parent.managedObjectContext.save()
             } catch (let error) {
                 fatalError("CoreData save failed: \(error.localizedDescription)")

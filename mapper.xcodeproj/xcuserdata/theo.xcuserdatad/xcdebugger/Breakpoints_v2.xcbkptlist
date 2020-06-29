@@ -14,9 +14,9 @@
             filePath = "mapper/views/ScanRecorder/ScanRecorderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "70"
-            endingLineNumber = "70"
-            landmarkName = "recordButtonDidTouchUpInside(_:)"
+            startingLineNumber = "75"
+            endingLineNumber = "75"
+            landmarkName = "viewDidLayoutSubviews()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -78,9 +78,9 @@
             filePath = "mapper/views/ScanRecorder/ScanRecorderViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "95"
-            endingLineNumber = "95"
-            landmarkName = "didFinishScan(_:)"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "didUpdateScanState(_:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -262,54 +262,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "966112C6-E55C-44F9-A639-055A81722889"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mapper/models/Scan/Scan.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
-            landmarkName = "didFinishRawScan(_:backendURL:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "71CF08A1-1F5B-44D7-A65D-EEE91F000D8A"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mapper/models/Scan/Scan.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "didFinishRawScan(_:backendURL:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "69EA77F7-68DC-4344-86EA-689E654C2D5C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mapper/models/Scan/Scan.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "84"
-            endingLineNumber = "84"
-            landmarkName = "didFinishRawScan(_:backendURL:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "7FE1204F-D4D2-48C5-98B0-49060DBC992A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -320,22 +272,6 @@
             startingLineNumber = "29"
             endingLineNumber = "29"
             landmarkName = "init(from:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "E31A31E0-2FFB-4DC7-8810-C5D2FFE0D882"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mapper/models/Scan/Scan.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "89"
-            endingLineNumber = "89"
-            landmarkName = "didFinishRawScan(_:backendURL:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -374,22 +310,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8F789A88-B151-4C26-B2D7-04432AAA3F85"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "mapper/views/ScanVisualization/3DReconstructionVisualization/ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "34"
-            endingLineNumber = "34"
-            landmarkName = "dragInteraction(_:itemsForBeginning:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "CE6CBBE2-CAAA-4EE2-A7CE-663DA89A956A"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -397,8 +317,8 @@
             filePath = "mapper/views/ScanVisualization/3DReconstructionVisualization/ReconstructionVisualizationViewController+UIDragInteractionDelegate.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "35"
-            endingLineNumber = "35"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
             landmarkName = "dragInteraction(_:itemsForBeginning:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -497,53 +417,22 @@
             endingLineNumber = "57"
             landmarkName = "draw(mesh:shouldDrawPointCloud:)"
             landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "C104B0FB-26EF-4813-97D5-F6F370A799E7 - 5860677ba4bb7635"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "mapper.MeshVisualizationView.draw(mesh: mapper.Mesh, shouldDrawPointCloud: Swift.Bool) -&gt; ()"
-                  moduleName = "mapper"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/theo/Documents/mapper/mapper/views/ScanVisualization/MeshVisualization/MeshVisualizationView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "4988">
-               </Location>
-               <Location
-                  uuid = "C104B0FB-26EF-4813-97D5-F6F370A799E7 - 33261bbd0cef84e2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #7 (Swift.SIMD3&lt;Swift.UInt32&gt;) -&gt; Swift.Array&lt;Swift.UInt32&gt; in mapper.MeshVisualizationView.draw(mesh: mapper.Mesh, shouldDrawPointCloud: Swift.Bool) -&gt; ()"
-                  moduleName = "mapper"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/theo/Documents/mapper/mapper/views/ScanVisualization/MeshVisualization/MeshVisualizationView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "32">
-               </Location>
-               <Location
-                  uuid = "C104B0FB-26EF-4813-97D5-F6F370A799E7 - 744148eac2b93b82"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #8 (Swift.Array&lt;Swift.UInt32&gt;) -&gt; Swift.Array&lt;Swift.UInt32&gt; in mapper.MeshVisualizationView.draw(mesh: mapper.Mesh, shouldDrawPointCloud: Swift.Bool) -&gt; ()"
-                  moduleName = "mapper"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/theo/Documents/mapper/mapper/views/ScanVisualization/MeshVisualization/MeshVisualizationView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "58"
-                  endingLineNumber = "58"
-                  offsetFromSymbolStart = "48">
-               </Location>
-            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3F1C41E9-BF6B-4711-9D8C-56672B9B935A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "mapper/models/PointCloud/PointCloud.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "colors"
+            landmarkType = "24">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

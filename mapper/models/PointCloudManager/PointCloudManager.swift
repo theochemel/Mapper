@@ -2,13 +2,14 @@ import Foundation
 import ARKit
 import Metal
 import MetalKit
+import CoreData
 
 // Heavily inspired by https://developer.apple.com/documentation/arkit/visualizing_a_point_cloud_using_scene_depth
 
 class PointCloudManager {
        
-    public var pointCloud = PointCloud()
-    
+    public var pointCloud: PointCloud
+        
     public var viewportSize: CGSize!
     public var orientation: UIInterfaceOrientation!
     
@@ -37,7 +38,9 @@ class PointCloudManager {
     private var depthTexture: CVMetalTexture?
     private var confidenceTexture: CVMetalTexture?
     
-    public init() {
+    public init(context: NSManagedObjectContext) {
+        self.pointCloud = PointCloud(context: context)
+        
         guard let device = MTLCreateSystemDefaultDevice() else { fatalError("Couldn't create MTL device.") }
         self.device = device
         
@@ -154,8 +157,7 @@ class PointCloudManager {
         for i in 0..<self.pointCount {
             let point = self.pointUniformsBuffer[i]
             if point.confidence >= self.confidenceThreshold {
-                self.pointCloud.points.append(point.position)
-                self.pointCloud.colors.append(point.color)
+                self.pointCloud.addPoint(point.position, color: point.color)
             }
         }
     }

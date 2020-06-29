@@ -23,15 +23,16 @@ class PointCloudVisualizationView: UIView {
         
         let pointsGeometrySource = SCNGeometrySource(vertices: pointCloud.points.map { SCNVector3($0) })
         
-        var colorsData = Data(count: pointCloud.colors.count * 12)
-        for i in 0..<pointCloud.colors.count {
-            colorsData.replaceSubrange(i*12..<i*12+4, with: withUnsafeBytes(of: pointCloud.colors[i].x) { Data($0) })
-            colorsData.replaceSubrange(i*12+4..<i*12+8, with: withUnsafeBytes(of: pointCloud.colors[i].y) { Data($0) })
-            colorsData.replaceSubrange(i*12+8..<i*12+12, with: withUnsafeBytes(of: pointCloud.colors[i].z) { Data($0) })
+        var colorsData = Data(count: pointCloud.pointCount * 12)
+        let colors = pointCloud.colors
+        for i in 0..<pointCloud.pointCount {
+            colorsData.replaceSubrange(i*12..<i*12+4, with: withUnsafeBytes(of: Float(colors[i].x) / 255.0) { Data($0) })
+            colorsData.replaceSubrange(i*12+4..<i*12+8, with: withUnsafeBytes(of: Float(colors[i].y) / 255.0) { Data($0) })
+            colorsData.replaceSubrange(i*12+8..<i*12+12, with: withUnsafeBytes(of: Float(colors[i].z) / 255.0) { Data($0) })
         }
         let colorsGeometrySource = SCNGeometrySource(data: colorsData,
                                                      semantic: .color,
-                                                     vectorCount: pointCloud.colors.count,
+                                                     vectorCount: pointCloud.pointCount,
                                                      usesFloatComponents: true,
                                                      componentsPerVector: 3,
                                                      bytesPerComponent: 4,

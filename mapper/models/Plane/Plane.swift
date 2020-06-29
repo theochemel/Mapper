@@ -1,30 +1,69 @@
 import Foundation
 import ARKit
+import CoreData
 
-public final class Plane: Codable {
-    var id: UUID
-    var classification: Classification
-    var alignment: Alignment
-    var geometry: Geometry
-    var position: simd_float3
-    var rotation: simd_quatf
-    var extent: simd_float3
+@objc(Plane)
+public final class Plane: NSManagedObject {
     
-    init(anchor: ARPlaneAnchor) {
-        self.id = anchor.identifier
-        self.classification = Classification(from: anchor.classification)
-        self.alignment = Alignment(from: anchor.alignment)
-        self.geometry = Geometry(from: anchor.geometry)
+    @NSManaged public var id: UUID
+    @NSManaged private var classificationString: String
+    @NSManaged private var alignmentString: String
+    @NSManaged public var positionData: Data
+    @NSManaged public var rotationData: Data
+    @NSManaged public var extentData: Data
+    
+    public var position: simd_float3 {
+        get {
+            return self.positionData.withUnsafeBytes { $0.load(as: simd_float3.self) }
+        }
         
-        self.rotation = simd_quatf(anchor.transform)
-        self.position = simd_float3(anchor.transform[3][0], anchor.transform[3][1], anchor.transform[3][2]) + self.rotation.act(anchor.center)
-        self.extent = anchor.extent
+        set(newValue) {
+            self.positionData = withUnsafeBytes(of: newValue) { Data($0) }
+        }
+    }
+    
+    public var rotation: simd_quatf {
+        get {
+            return self.rotationData.withUnsafeBytes { $0.load(as: simd_quatf.self) }
+        }
+        
+        set(newValue) {
+            self.rotationData = withUnsafeBytes(of: newValue) { Data($0) }
+        }
+    }
+    
+    public var extent: simd_float3 {
+        get {
+            return self.extentData.withUnsafeBytes { $0.load(as: simd_float3.self) }
+        }
+        
+        set(newValue) {
+            self.extentData = withUnsafeBytes(of: newValue) { Data($0) }
+        }
+    }
+    
+    public var classification: Classification {
+        get {
+            return Classification(rawValue: self.classificationString)!
+        }
+        set(newValue) {
+            self.classificationString = newValue.rawValue
+        }
+    }
+    
+    public var alignment: Alignment {
+        get {
+            return Alignment(rawValue: self.alignmentString)!
+        }
+        set(newValue) {
+            self.alignmentString = newValue.rawValue
+        }
     }
     
     public func update(from anchor: ARPlaneAnchor) {
+        self.id = anchor.identifier
         self.classification = Classification(from: anchor.classification)
         self.alignment = Alignment(from: anchor.alignment)
-        self.geometry = Geometry(from: anchor.geometry)
 
         self.rotation = simd_quatf(anchor.transform)
         self.position = simd_float3(anchor.transform[3][0], anchor.transform[3][1], anchor.transform[3][2]) + self.rotation.act(anchor.center)
@@ -33,41 +72,5 @@ public final class Plane: Codable {
     
     public func shouldBeTreatedAsWall() -> Bool {
         return self.alignment == .vertical
-//        return self.classification == .wall
-    }
-    
-    enum CodingKeys: String, CodingKey {
-        case id
-        case classification
-        case alignment
-        case geometry
-        case position
-        case rotation
-        case extent
-    }
-
-    public func encode(to encoder: Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        try container.encode(self.id, forKey: .id)
-        try container.encode(self.classification, forKey: .classification)
-        try container.encode(self.alignment, forKey: .alignment)
-        try container.encode(self.geometry, forKey: .geometry)
-        try container.encode(self.position, forKey: .position)
-        try container.encode(self.rotation.vector, forKey: .rotation)
-        try container.encode(self.extent, forKey: .extent)
-    }
-
-    public init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.id = try container.decode(UUID.self, forKey: .id)
-        self.classification = try container.decode(Classification.self, forKey: .classification)
-        self.alignment = try container.decode(Alignment.self, forKey: .alignment)
-        self.geometry = try container.decode(Geometry.self, forKey: .geometry)
-        self.position = try container.decode(simd_float3.self, forKey: .position)
-
-        let rotationVector = try container.decode(simd_float4.self, forKey: .rotation)
-        self.rotation = simd_quatf(vector: rotationVector)
-        
-        self.extent = try container.decode(simd_float3.self, forKey: .extent)
     }
 }

@@ -1,7 +1,12 @@
 import Foundation
 import ARKit
+import CoreData
 
-public class Floorplan: Codable {
-    var walls: [Wall]
-    var objects: [Object]
+@objc(Floorplan)
+public final class Floorplan: NSManagedObject {
+    
+    @NSManaged public var points: Set<Point>
+    @NSManaged public var walls: Set<Wall>
+    @NSManaged public var objects: Set<Object>
+
 }

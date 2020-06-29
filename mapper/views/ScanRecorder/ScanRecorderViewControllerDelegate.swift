@@ -1,5 +1,5 @@
 import Foundation
 
 protocol ScanRecorderViewControllerDelegate {
-    func didFinishScan(_ scan: RawScan)
+    func didFinishScanning(rawFloorplan: RawFloorplan, pointCloud: PointCloud?)
 }

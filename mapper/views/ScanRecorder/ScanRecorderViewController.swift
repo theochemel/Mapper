@@ -1,8 +1,11 @@
 import Foundation
 import UIKit
 import ARKit
+import CoreData
 
 class ScanRecorderViewController: UIViewController {
+    
+    public var context: NSManagedObjectContext!
         
     private var scanRecorder: ScanRecorder!
     private var scanRecorderView: ScanRecorderView!
@@ -15,8 +18,10 @@ class ScanRecorderViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.scanRecorder = ScanRecorder(orientation: UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? UIInterfaceOrientation.unknown,
+        self.scanRecorder = ScanRecorder(context: self.context,
+                                         orientation: UIApplication.shared.windows.first?.windowScene?.interfaceOrientation ?? UIInterfaceOrientation.unknown,
                                          viewportSize: .zero)
+        self.scanRecorder.context = self.context
         self.scanRecorder.delegate = self
         
         self.scanRecorderView = ScanRecorderView()
@@ -95,9 +100,9 @@ extension ScanRecorderViewController: ScanRecorderDelegate {
         self.minimapViewController.update(from: state)
     }
     
-    func didFinishScan(_ rawScan: RawScan) {
+    func didFinishScanning(rawFloorplan: RawFloorplan, pointCloud: PointCloud?) {
         self.scanRecorderView.arView.session.pause()
-        self.delegate?.didFinishScan(rawScan)
+        self.delegate?.didFinishScanning(rawFloorplan: rawFloorplan, pointCloud: pointCloud)
         self.navigationController?.popViewController(animated: true)
     }
 }

@@ -2,7 +2,7 @@ import Foundation
 import ARKit
 
 extension Plane {
-    enum Classification: String, Codable {
+    public enum Classification: String, Codable {
         case wall
         case floor
         case ceiling

@@ -1,18 +1,40 @@
 import Foundation
 import ARKit
+import CoreData
 
-public class Object: Codable {
-    var id: UUID
-    var planeID: UUID?
-    var category: Category
-    var position: simd_float3
-    var extent: simd_float3
+@objc(MapperObject)
+public final class Object: NSManagedObject {
     
-    init(planeID: UUID?, position: simd_float3, extent: simd_float3, category: Category) {
-        self.id = UUID()
-        self.planeID = planeID
-        self.position = position
-        self.extent = extent
-        self.category = category
+    @NSManaged public var id: UUID
+    @NSManaged private var categoryString: String
+    @NSManaged public var positionData: Data
+    @NSManaged public var extentData: Data
+    
+    public var category: Category {
+        get {
+            return Category(rawValue: self.categoryString)!
+        }
+        
+        set(newValue) {
+            self.categoryString = newValue.rawValue
+        }
+    }
+    
+    public var position: simd_float3 {
+        get {
+            return self.positionData.withUnsafeBytes { $0.load(as: simd_float3.self) }
+        }
+        set(newValue) {
+            self.positionData = withUnsafeBytes(of: newValue) { Data($0) }
+        }
+    }
+    
+    public var extent: simd_float3 {
+        get {
+            return self.extentData.withUnsafeBytes { $0.load(as: simd_float3.self) }
+        }
+        set(newValue) {
+            self.extentData = withUnsafeBytes(of: newValue) { Data($0) }
+        }
     }
 }

@@ -46,7 +46,7 @@ class FloorplanVisualizationView: UIView {
     }
     
     public func draw(floorplan: Floorplan) {
-        let points: [simd_float2] = floorplan.walls.map { [$0.start, $0.end] }.flatMap { $0 }.map { $0.position }
+        let points: [simd_float2] = floorplan.points.map { $0.position }
         let xValues = points.map { $0.x }
         let yValues = points.map { $0.y }
         guard let minX = xValues.min(), let maxX = xValues.max(), let minY = yValues.min(), let maxY = yValues.max() else { return }
@@ -64,19 +64,30 @@ class FloorplanVisualizationView: UIView {
         let path = UIBezierPath()
         
         for wall in floorplan.walls {
+            
+            guard wall.points.count > 1 else { continue }
+            
+            let firstPoint = floorplan.points.first(where: { $0.id == wall.points[0] })!
+            
             let xCenteringOffset = yScale < xScale ? (self.bounds.width - scale * CGFloat(maxX - minX)) / 2.0 : 0.0
             let yCenteringOffset = xScale < yScale ? (self.bounds.height - scale * CGFloat(maxY - minY)) / 2.0 : 0.0
             
+            let firstDrawPoint = CGPoint(x: CGFloat(firstPoint.position.x - minX) * scale + xCenteringOffset,
+                                         y: CGFloat(firstPoint.position.y - minY) * scale + yCenteringOffset)
+            path.move(to: firstDrawPoint)
             
-            let startPoint = CGPoint(x: CGFloat(wall.start.position.x - minX) * scale + xCenteringOffset,
-                                     y: CGFloat(wall.start.position.y - minY) * scale + yCenteringOffset)
-            let endPoint = CGPoint(x: CGFloat(wall.end.position.x - minX) * scale + xCenteringOffset,
-                                   y: CGFloat(wall.end.position.y - minY) * scale + yCenteringOffset)
-            
-            path.move(to: startPoint)
-            path.addLine(to: endPoint)
-            
-            print("Wall: ", wall.id, wall.start.position, wall.end.position)
+            for i in 1..<wall.points.count {
+                let point = floorplan.points.first(where: { $0.id == wall.points[i] })!
+                
+                let xCenteringOffset = yScale < xScale ? (self.bounds.width - scale * CGFloat(maxX - minX)) / 2.0 : 0.0
+                let yCenteringOffset = xScale < yScale ? (self.bounds.height - scale * CGFloat(maxY - minY)) / 2.0 : 0.0
+                
+                
+                let drawPoint = CGPoint(x: CGFloat(point.position.x - minX) * scale + xCenteringOffset,
+                                         y: CGFloat(point.position.y - minY) * scale + yCenteringOffset)
+                
+                path.addLine(to: drawPoint)
+            }
         }
         
         self.mapLayer.path = path.cgPath

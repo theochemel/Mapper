@@ -2,129 +2,32 @@ import Foundation
 import CoreData
 
 @objc(Scan)
-public class Scan: NSManagedObject {
+public final class Scan: NSManagedObject {
+    
+    @NSManaged public var id: UUID
     @NSManaged public var name: String
     @NSManaged public var dateCreated: Date
     @NSManaged public var address: String
     @NSManaged public var floor: String
-    @NSManaged public var isScanCompleted: Bool
-    @NSManaged public var rawScanData: NSData?
-    @NSManaged public var cleanedScanData: NSData?
     
-    public var rawScan: RawScan? {
-        get {
-            guard let rawScanData = self.rawScanData else { return nil }
-            do {
-                return try JSONDecoder().decode(RawScan.self, from: rawScanData as Data)
-            } catch(let error) {
-                print("Error decoding rawScanData: ", error)
-                return nil
-            }
-        }
-        
-        set(newValue) {
-            guard let rawScan = newValue else { self.rawScanData = nil; return }
-            do {
-                self.rawScanData = try JSONEncoder().encode(rawScan) as NSData
-            } catch(let error) {
-                print("Error encoding rawScan: ", error)
-                self.rawScanData = nil
-            }
-        }
+    @NSManaged public var rawFloorplan: RawFloorplan?
+    @NSManaged public var floorplan: Floorplan?
+    @NSManaged public var reconstruction: Reconstruction?
+    @NSManaged public var pointCloud: PointCloud?
+    
+    public var isCompleted: Bool {
+        return self.rawFloorplan != nil
     }
     
-    public var cleanedScan: CleanedScan? {
-        get {
-            guard let cleanedScanData = self.cleanedScanData else { return nil }
-            do {
-                return try JSONDecoder().decode(CleanedScan.self, from: cleanedScanData as Data)
-            } catch(let error) {
-                print("Error decoding cleanedScanData: ", error)
-                return nil
-            }
-        }
-        
-        set(newValue) {
-            guard let cleanedScan = newValue else { self.cleanedScanData = nil; return }
-            do {
-                self.cleanedScanData = try JSONEncoder().encode(cleanedScan) as NSData
-            } catch(let error) {
-                print("Error encoding cleanedScan: ", error)
-                self.cleanedScanData = nil
-            }
-        }
-
+    public var isFloorplanCompleted: Bool {
+        return self.floorplan != nil
     }
     
-    public func didFinishRawScan(_ rawScan: RawScan, backendURL: String) {
-        self.rawScan = rawScan
-        self.isScanCompleted = true
-                
-        guard let url = URL(string: backendURL) else { return }
-        
-        do {
-            let rawScanData = try JSONEncoder().encode(rawScan)
-            
-            var request = URLRequest(url: url)
-            request.httpMethod = "POST"
-            request.httpBody = rawScanData
-            
-            let task = URLSession.shared.dataTask(with: request) { data, response, error in
-                guard error == nil else {
-                    print("Network error: ", error as Any)
-                    return
-                    // show error UI
-                }
-                
-                guard let data = data else { print("No data!"); return }
-                
-                do {
-                    self.cleanedScan = try JSONDecoder().decode(CleanedScan.self, from: data)
-                    try DispatchQueue.main.sync {
-                        try self.managedObjectContext?.save()
-                    }
-                } catch(let error) {
-                    print("Error decoding or saving: ", error)
-                }
-            }
-            
-            task.resume()
-            
-        } catch(let error) {
-            print("Error encoding: ", error)
-        }
+    public var isReconstructionCompleted: Bool {
+        return self.reconstruction != nil
     }
     
-    public func refreshCleanedScan(backendURL: String) {
-        guard let url = URL(string: backendURL) else { return }
-        
-        guard let nsData = self.rawScanData else { return }
-        
-        var request = URLRequest(url: url)
-        request.httpMethod = "POST"
-        request.httpBody = Data(referencing: nsData)
-        
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            guard error == nil else {
-                print("Network error: ", error as Any)
-                return
-                // show error UI
-            }
-            
-            guard let data = data else { print("No data!"); return }
-
-            print(data)
-            
-            do {
-                self.cleanedScan = try JSONDecoder().decode(CleanedScan.self, from: data)
-                try DispatchQueue.main.sync {
-                    try self.managedObjectContext?.save()
-                }
-            } catch(let error) {
-                print("Error decoding or saving: ", error)
-            }
-        }
-        
-        task.resume()
+    public var isPointCloudCompleted: Bool {
+        return self.pointCloud != nil
     }
 }

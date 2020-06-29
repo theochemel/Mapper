@@ -24,8 +24,8 @@ class ReconstructionVisualizationViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        if let asset = self.reconstruction.asset {
-            self.reconstructionVisualizationView.draw(asset: asset)
-        }
+//        if let asset = self.reconstruction.asset {
+//            self.reconstructionVisualizationView.draw(asset: asset)
+//        }
     }
 }

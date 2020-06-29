@@ -2,7 +2,7 @@ import Foundation
 import ARKit
 
 extension Plane {
-    enum Alignment: String, Codable {
+    public enum Alignment: String, Codable {
         case horizontal
         case vertical
         case unknown

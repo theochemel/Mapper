@@ -1,7 +1,8 @@
 import Foundation
 
 extension Object {
-    enum Category: String, Codable, CaseIterable {
+    
+    public enum Category: String, Codable, CaseIterable {
         case table = "table"
         case chair = "chair"
         case bed = "bed"
